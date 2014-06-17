@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src= "./jquery.js"></script>
+	</head>
+	<body>
+		<div class = "header-section">
+			<div class="header-text-contianer">Redhawk Helper</div>
+		</div>
+		<div class="filter-tab">
+			<div class="redhawk-filter-header">
+				<div class="redhawk-filter-text-container">Redhawk Query</div>
+			</div>
+			<div class = "server-list-container">
+				<div class="server-list-label">Redhawk in </div>
+				<select class = "server-list" id = "serverList">
+		          <option value = "1">HKG - Hong Kong</option>
+		          <option value = "2">ASH - Ashbourne</option>
+		          <option value = "3">AMS - Amsterdam</option>
+		          <option value = "4">DEV - Development</option>
+		        </select>
+	        </div>
+	        <div class="url-selection-container">
+	        	<form action="">
+					<input  type="radio" id = "getRadio" name="url-selection" value="Get" checked>get
+					<input class = "getsets-checkbox" id = "getSetsRadio" type="radio" name="url-selection" value="GetSets">getsets
+				</form>
+	        </div>
+	        <div class="query-input-container">
+	        	<div class="query-input-header-label">Query:</div>
+	        	<textarea class="query-input-textarea"></textarea>
+	        </div>
+	        <div class = "submit-button">Submit</div>
+		</div>
+		<div class ="result-tab" >
+			<textarea class = "result-text-area" id = "resultTextArea" readonly></textarea>
+		</div>
+
+
+		<script src= "./redhawk-query.js"></script>
+		<link rel="stylesheet" type="text/css" href="api-call.css">
+	</body>
+</html>
