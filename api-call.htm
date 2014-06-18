@@ -54,14 +54,18 @@
 			        </select>
 		        </div>
 		        <div class="granularity-container">
-		     		<div class="granularity-label">Granularity : </div>
-		     		<input  type="text" class = "granularity-text-box form-control">
+		     		<div class="granularity-label" rel="tooltip" title="accept only integer">Granularity : </div>
+		     		<input  type="text" class = "granularity-text-box form-control" rel="tooltip" title="accept only integer">
+		        </div>
+		        <div class="dataset-container">
+		     		<div class="dataset-label" rel="tooltip" title="avaliable with getsets">Dataset : </div>
+		     		<input  type="text" class = "dataset-text-box form-control" id = "dataSetTextBox" rel="tooltip" title="avaliable with getsets" disabled>
 		        </div>
 		        <div class="date-time-picker-contatiner">
 		        	<div class="start-date-time-picker-container">
 			        	<div class="start-date-time-label">start : </div>
 			        	<div id="dateTimePickerStart" class="start-date-time-picker input-append date">
-						    <input data-format="dd/MM/yyyy hh:mm:ss" type="text"></input>
+						    <input class="start-date-time-value" data-format="yyyy-MM-dd hh:mm:ss" type="text"></input>
 						    <span class="add-on">
 						      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
 						      </i>
@@ -71,7 +75,7 @@
 					 <div class="end-date-time-picker-container">
 			        	<div class="end-date-time-label">end : </div>
 			        	<div id="dateTimePickerEnd" class="end-date-time-picker input-append date">
-						    <input data-format="dd/MM/yyyy hh:mm:ss" type="text"></input>
+						    <input class="end-date-time-value" data-format="yyyy-MM-dd hh:mm:ss" type="text"></input>
 						    <span class="add-on">
 						      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
 						      </i>
@@ -79,6 +83,10 @@
 						 </div>
 					 </div>
 		        </div>
+		        <div class="cluster-contatiner">
+	        		<div class="cluster-label" rel="tooltip" title="seperate cluster by comma">Cluster : </div>
+	        		<input  type="text" class = "cluster-text-box form-control" rel="tooltip" title="seperate cluster by comma">
+	        	</div>
 	        </div>
 	        <hr class = "optional-line" align="center" width="80%">
 	        <div class="optional-section">
@@ -86,10 +94,6 @@
 	        	<div class="page-contatiner">
 	        		<div class="page-label" rel="tooltip" title="seperate page by comma">Page : </div>
 	        		<input  type="text" class = "page-text-box form-control" rel="tooltip" title="seperate page by comma">
-	        	</div>
-	        	<div class="cluster-contatiner">
-	        		<div class="cluster-label" rel="tooltip" title="seperate cluster by comma">Cluster : </div>
-	        		<input  type="text" class = "cluster-text-box form-control" rel="tooltip" title="seperate cluster by comma">
 	        	</div>
 	        	<div class="platform-contatiner">
 	        		<div class="platform-label" rel="tooltip" title="seperate platform by comma">Platform : </div>
