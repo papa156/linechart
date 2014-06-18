@@ -72,7 +72,8 @@ function getValueClusterTextBox(){
 		alert("Cluster Information is mandatory");
 		return;
 	}
-	return cluster;  
+	var clusterList = cluster.split(',');
+	return clusterList; 
 };
 
 function getStateFromRadioCheckBox(){
@@ -91,6 +92,24 @@ function getDatasetsForGetSets(){
 	}
 	var dataSetsList = dataSetsVal.split(',');
 	return dataSetsList; 
+};
+
+function getPageFromPageTextBox(){
+	var pageVal = $(".page-text-box").val();
+	if(pageVal === ""){
+		return;
+	}
+	var pageList = pageVal.split(',');
+	return pageList; 
+};
+
+function getPlatformFromPlatformTextBox(){
+	var platformVal = $(".platform-text-box").val();
+	if(platformVal === ""){
+		return;
+	}
+	var platformList = platformVal.split(',');
+	return platformList; 
 };
 
 function generateFullAPIUrl(selectedOption,getRadioState,getSetsRadioState){
@@ -160,9 +179,11 @@ function setGetSetsRequestObject(metricSelectedOption,granularity,startDate,endD
 	requestObject.end = endDate;
 	requestObject.tags = {
 		cluster:[
-			cluster
 		]
 	};
+	for(var i=0;i<cluster.length;i++){
+		requestObject.tags.cluster.push(cluster[i]);
+	}
 	var requestObjectString = JSON.stringify(requestObject);
 	console.log(requestObjectString,typeof requestObjectString);
 	requestQueryResult(serverUrl,requestObjectString,function(result){
@@ -189,6 +210,8 @@ $(".submit-button").click(function(){
 	var cluster=getValueClusterTextBox();
 
 	if(getRadioState === true){
+		var page=getPageFromPageTextBox();
+		var platform=getPlatformFromPlatformTextBox();
 		setGetRequestObject(metricSelectedOption,granularity,startDate,endDate,serverUrl,cluster);
 	}else if(getSetsRadioState === true){
 		var datasetList=getDatasetsForGetSets();
