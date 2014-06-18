@@ -210,10 +210,12 @@ $(".submit-button").click(function(){
 	var cluster=getValueClusterTextBox();
 
 	if(getRadioState === true){
+		$("#dataSetTextBox").attr("disabled",true);
 		var page=getPageFromPageTextBox();
 		var platform=getPlatformFromPlatformTextBox();
 		setGetRequestObject(metricSelectedOption,granularity,startDate,endDate,serverUrl,cluster);
 	}else if(getSetsRadioState === true){
+		$("#dataSetTextBox").removeAttr("disabled");
 		var datasetList=getDatasetsForGetSets();
 		console.log(datasetList);
 		setGetSetsRequestObject(metricSelectedOption,granularity,startDate,endDate,serverUrl,cluster,datasetList);
