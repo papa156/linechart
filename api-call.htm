@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<title>Redhawk Helper</title>
 		<script src= "./jquery.js"></script>
 		<script src="./bootstrap-3.1.1-dist/js/bootstrap.min.js"></script>
+		<script src="./silviomoreto-bootstrap-select/bootstrap-select.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="./bootstrap-3.1.1-dist/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="./silviomoreto-bootstrap-select/bootstrap-select.min.css">
 	</head>
 	<body>
 		<div class = "header-section">
@@ -15,7 +18,7 @@
 			</div>
 			<div class = "server-list-container">
 				<div class="server-list-label">Redhawk in </div>
-				<select class = "server-list" id = "serverList">
+				<select class = "server-list selectpicker" id = "serverList">
 		          <option value = "1">HKG - Hong Kong</option>
 		          <option value = "2">ASH - Ashbourne</option>
 		          <option value = "3">AMS - Amsterdam</option>
@@ -23,15 +26,35 @@
 		        </select>
 	        </div>
 	        <div class="url-selection-container">
-	        	<form action="">
+	        	<form action="" class = "url-selection-form">
+	        		method :
 					<input  type="radio" id = "getRadio" name="url-selection" value="Get" checked>get
 					<input class = "getsets-checkbox" id = "getSetsRadio" type="radio" name="url-selection" value="GetSets">getsets
 				</form>
 	        </div>
-	        <div class="query-input-container">
+	     	<div class="metric-list-container">
+	     		<div class="metric-list-label">Metric : </div>
+	        	<select class = "metric-list selectpicker" id = "metricList" data-width="320px">
+		          <option value = "1">FE.PagePerformance.RedirectTime</option>
+		          <option value = "2">FE.PagePerformance.DnsTime</option>
+		          <option value = "3">FE.PagePerformance.ConnectTime</option>
+		          <option value = "4">FE.PagePerformance.RequestTime</option>
+		          <option value = "5">FE.PagePerformance.DomLoadTime</option>
+		          <option value = "6">FE.PagePerformance.ResponseTime</option>
+		          <option value = "7">FE.PagePerformance.DomReadyTime</option>
+		          <option value = "8">FE.PagePerformance.DomContentLoadedTime</option>
+		          <option value = "9">FE.PagePerformance.DomCompleteTime</option>
+		          <option value = "10">FE.PagePerformance.LoadEventTime</option>
+		        </select>
+	        </div>
+	        <div class="granularity-container">
+	     		<div class="granularity-label">Granularity : </div>
+	     		<input  type="text" class = "granularity-text-box form-control">
+	        </div>
+	        <!-- <div class="query-input-container">
 	        	<div class="query-input-header-label">Query:</div>
 	        	<textarea class="query-input-textarea"></textarea>
-	        </div>
+	        </div> -->
 	        <div class = "submit-button">Submit</div>
 		</div>
 		<div class ="result-tab" >
@@ -41,5 +64,8 @@
 
 		<script src= "./redhawk-query.js"></script>
 		<link rel="stylesheet" type="text/css" href="api-call.css">
+		<script  type = 'text/javascript'>
+			$('.selectpicker').selectpicker();
+		</script>
 	</body>
 </html>
