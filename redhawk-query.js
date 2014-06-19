@@ -144,7 +144,8 @@ function requestQueryResult(serverUrl,inputQuery,callback){
         data : inputQuery,
         crossDomain : true
     }).fail(function(jqXHR, textStatus, errorThrown){
-    	alert("Query fail");
+    	//alert("Query fail");
+    	console.log(jqXHR, textStatus, errorThrown);
 	}).done(function(result,status){
 		callback(result);
 	});
@@ -210,15 +211,14 @@ function setGetSetsRequestObject(metricSelectedOption,granularity,startDate,endD
 		}
 	}
 	var requestObjectString = JSON.stringify(requestObject);
-	console.log(requestObject);
 	requestQueryResult(serverUrl,requestObjectString,function(result){
 		updateResult(result);
 	});
 };
 
 
-$(".submit-button").click(function(){
-	requestObject = {};
+$(".submit-button").click(function(e){
+	e.preventDefault();
 	var serverSelectedOption = getSelectedItemFromServerDropDownList();
 	var metricSelectedOption = getSelectedItemFromMetricDropDownList();
 	var granularity = getValueFromGranularityTextBox();
