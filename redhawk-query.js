@@ -15,8 +15,8 @@ $("#getRadio").click(function(){
 
 $("#getSetsRadio").click(function(){
 	$("#dataSetTextBox").removeAttr("disabled");
-	$(".dataset-text-box").attr("data-original-title","seperate by comma");
-	$(".dataset-label").attr("data-original-title","seperate by comma");
+	$(".dataset-text-box").attr("data-original-title","seperate by comma, insert in order");
+	$(".dataset-label").attr("data-original-title","seperate by comma, insert in order");
 });
 
 
@@ -155,7 +155,7 @@ function updateResult(result){
 	$(".result-text-area").text(JSON.stringify(result, null, "\t"));
 };
 
-function setGetRequestObject(metricSelectedOption,granularity,startDate,endDate,serverUrl,cluster){
+function setGetRequestObject(metricSelectedOption,granularity,startDate,endDate,serverUrl,cluster,page,platform){
 	requestObject.metric = metricSelectedOption;
 	requestObject.granularity = granularity;
 	requestObject.start = startDate;
@@ -165,27 +165,52 @@ function setGetRequestObject(metricSelectedOption,granularity,startDate,endDate,
 			cluster
 		]
 	};
+	if(typeof page !== "undefined"){
+		requestObject.tags.page = [];
+		for(var i=0;i<page.length;i++){
+			requestObject.tags.page.push(page[i]);
+		}
+	}
+	if(typeof platform !== "undefined"){
+		requestObject.tags.platform = [];
+		for(var i=0;i<platform.length;i++){
+			requestObject.tags.platform.push(platform[i]);
+		}
+	}
 	var requestObjectString = JSON.stringify(requestObject);
-	console.log(requestObjectString,typeof requestObjectString);
 	requestQueryResult(serverUrl,requestObjectString,function(result){
 		updateResult(result);
 	});
 };
 
-function setGetSetsRequestObject(metricSelectedOption,granularity,startDate,endDate,serverUrl,cluster,datasetList){
-	requestObject.metric = metricSelectedOption;
-	requestObject.granularity = granularity;
-	requestObject.start = startDate;
-	requestObject.end = endDate;
-	requestObject.tags = {
-		cluster:[
-		]
-	};
-	for(var i=0;i<cluster.length;i++){
-		requestObject.tags.cluster.push(cluster[i]);
+function setGetSetsRequestObject(metricSelectedOption,granularity,startDate,endDate,serverUrl,cluster,datasetList,page,platform){
+	requestObject.request={};
+	for(var i=0;i<datasetList.length;i++){
+		requestObject.request[datasetList[i]] = {};
+		requestObject.request[datasetList[i]].metric = metricSelectedOption;
+		requestObject.request[datasetList[i]].granularity = granularity;
+		requestObject.request[datasetList[i]].start = startDate;
+		requestObject.request[datasetList[i]].end = endDate;
+		requestObject.request[datasetList[i]].tags = {
+			cluster:[
+				cluster[i]
+			]
+		};
+		if(typeof page !== "undefined"){
+			requestObject.request[datasetList[i]].tags.page = [];
+			for(var j=0;j<page.length;j++){
+				requestObject.request[datasetList[i]].tags.page.push(page[j]);
+			}
+		}
+		if(typeof platform !== "undefined"){
+			requestObject.request[datasetList[i]].tags.platform = [];
+			for(var j=0;j<platform.length;j++){
+				requestObject.request[datasetList[i]].tags.platform.push(platform[j]);
+			}
+		}
 	}
 	var requestObjectString = JSON.stringify(requestObject);
-	console.log(requestObjectString,typeof requestObjectString);
+	console.log(requestObject);
 	requestQueryResult(serverUrl,requestObjectString,function(result){
 		updateResult(result);
 	});
@@ -193,6 +218,7 @@ function setGetSetsRequestObject(metricSelectedOption,granularity,startDate,endD
 
 
 $(".submit-button").click(function(){
+	requestObject = {};
 	var serverSelectedOption = getSelectedItemFromServerDropDownList();
 	var metricSelectedOption = getSelectedItemFromMetricDropDownList();
 	var granularity = getValueFromGranularityTextBox();
@@ -209,16 +235,16 @@ $(".submit-button").click(function(){
 
 	var cluster=getValueClusterTextBox();
 
+	var page=getPageFromPageTextBox();
+	var platform=getPlatformFromPlatformTextBox();
+
 	if(getRadioState === true){
 		$("#dataSetTextBox").attr("disabled",true);
-		var page=getPageFromPageTextBox();
-		var platform=getPlatformFromPlatformTextBox();
-		setGetRequestObject(metricSelectedOption,granularity,startDate,endDate,serverUrl,cluster);
+		setGetRequestObject(metricSelectedOption,granularity,startDate,endDate,serverUrl,cluster,page,platform);
 	}else if(getSetsRadioState === true){
 		$("#dataSetTextBox").removeAttr("disabled");
 		var datasetList=getDatasetsForGetSets();
-		console.log(datasetList);
-		setGetSetsRequestObject(metricSelectedOption,granularity,startDate,endDate,serverUrl,cluster,datasetList);
+		setGetSetsRequestObject(metricSelectedOption,granularity,startDate,endDate,serverUrl,cluster,datasetList,page,platform);
 	}
 	
 
