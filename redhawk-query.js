@@ -19,7 +19,17 @@ $("#getSetsRadio").click(function(){
 	$(".dataset-label").attr("data-original-title","seperate by comma, insert in order");
 });
 
+$(".add-datapoints-button-container").click(function(){
+	 $("#dataPointTextBox").clone().appendTo("dataPoint-graph-container");
+});
 
+
+
+function setFlashMessage(status,message){
+	$(".alert-link").html(message);
+	$(".flash-alert-message").show();
+	$(".flash-alert-message").delay(2000).fadeOut();
+};
 
 function getSelectedItemFromServerDropDownList(){
 	var serverDropdownList = document.getElementById("serverList");
@@ -35,12 +45,12 @@ function getValueFromGranularityTextBox(){
 	var granularity = $(".granularity-text-box").val();
 	var granularityInt;
 	if(granularity === ""){
-		alert("Granularity is mandatory");
+		setFlashMessage("error","Granularity is mandatory");
 		return;
 	}
 	granularityInt = parseInt(granularity);
 	if (isNaN(granularityInt)){
-        alert("Granularity value is not integer");
+		setFlashMessage("error","Granularity value is not integer");
         return;
     }
 	return granularityInt;  
@@ -49,17 +59,17 @@ function getValueFromGranularityTextBox(){
 function getValueFromStartDateAndTimePicker(){
 	var startDate = $(".start-date-time-value").val();
 	if(startDate === ""){
-		alert("Start date Information is mandatory");
+		setFlashMessage("error","Start date Information is mandatory");
 		return;
 	}
 	//var startDate = startDate.substring(startDate.indexOf(" ")+1,startDate.length);
 	return startDate;  
 };
 
-function getValueFromEndtDateAndTimePicker(){
+function getValueFromEndDateAndTimePicker(){
 	var endDate = $(".end-date-time-value").val();
 	if(endDate === ""){
-		alert("End date Information is mandatory");
+		setFlashMessage("error","End date Information is mandatory");
 		return;
 	}
 	//var endDate = endDate.substring(endDate.indexOf(" ")+1,endDate.length);
@@ -69,7 +79,7 @@ function getValueFromEndtDateAndTimePicker(){
 function getValueClusterTextBox(){
 	var cluster = $(".cluster-text-box").val();
 	if(cluster === ""){
-		alert("Cluster Information is mandatory");
+		setFlashMessage("error","Cluster Information is mandatory");
 		return;
 	}
 	var clusterList = cluster.split(',');
@@ -87,7 +97,7 @@ function getStateFromRadioCheckBox(){
 function getDatasetsForGetSets(){
 	var dataSetsVal = $(".dataset-text-box").val();
 	if(dataSetsVal === ""){
-		alert("datasets is mandatory in getsets");
+		setFlashMessage("error","Datasets is mandatory in getsets");
 		return;
 	}
 	var dataSetsList = dataSetsVal.split(',');
@@ -115,7 +125,7 @@ function getPlatformFromPlatformTextBox(){
 function generateFullAPIUrl(selectedOption,getRadioState,getSetsRadioState){
 	var serverUrl = serverUrlList[selectedOption];
 	if(getRadioState === false && getSetsRadioState === false){
-		alert("You need to choose one query method");
+		setFlashMessage("error","You need to choose one query method");
 		return;
 	}else if(getRadioState === true){
 		serverUrl = serverUrl + "/get";
@@ -144,7 +154,7 @@ function requestQueryResult(serverUrl,inputQuery,callback){
         data : inputQuery,
         crossDomain : true
     }).fail(function(jqXHR, textStatus, errorThrown){
-    	//alert("Query fail");
+    	setFlashMessage("error","Query fail");
     	console.log(jqXHR, textStatus, errorThrown);
 	}).done(function(result,status){
 		callback(result);
@@ -154,6 +164,7 @@ function requestQueryResult(serverUrl,inputQuery,callback){
 
 function updateResult(result){
 	$(".result-text-area").text(JSON.stringify(result, null, "\t"));
+	$(".plot-graph-shortcut-button").show();
 };
 
 function setGetRequestObject(metricSelectedOption,granularity,startDate,endDate,serverUrl,cluster,page,platform){
@@ -185,28 +196,28 @@ function setGetRequestObject(metricSelectedOption,granularity,startDate,endDate,
 };
 
 function setGetSetsRequestObject(metricSelectedOption,granularity,startDate,endDate,serverUrl,cluster,datasetList,page,platform){
-	requestObject.request={};
+	requestObject.requests={};
 	for(var i=0;i<datasetList.length;i++){
-		requestObject.request[datasetList[i]] = {};
-		requestObject.request[datasetList[i]].metric = metricSelectedOption;
-		requestObject.request[datasetList[i]].granularity = granularity;
-		requestObject.request[datasetList[i]].start = startDate;
-		requestObject.request[datasetList[i]].end = endDate;
-		requestObject.request[datasetList[i]].tags = {
+		requestObject.requests[datasetList[i]] = {};
+		requestObject.requests[datasetList[i]].metric = metricSelectedOption;
+		requestObject.requests[datasetList[i]].granularity = granularity;
+		requestObject.requests[datasetList[i]].start = startDate;
+		requestObject.requests[datasetList[i]].end = endDate;
+		requestObject.requests[datasetList[i]].tags = {
 			cluster:[
 				cluster[i]
 			]
 		};
 		if(typeof page !== "undefined"){
-			requestObject.request[datasetList[i]].tags.page = [];
+			requestObject.requests[datasetList[i]].tags.page = [];
 			for(var j=0;j<page.length;j++){
-				requestObject.request[datasetList[i]].tags.page.push(page[j]);
+				requestObject.requests[datasetList[i]].tags.page.push(page[j]);
 			}
 		}
 		if(typeof platform !== "undefined"){
-			requestObject.request[datasetList[i]].tags.platform = [];
+			requestObject.requests[datasetList[i]].tags.platform = [];
 			for(var j=0;j<platform.length;j++){
-				requestObject.request[datasetList[i]].tags.platform.push(platform[j]);
+				requestObject.requests[datasetList[i]].tags.platform.push(platform[j]);
 			}
 		}
 	}
@@ -219,6 +230,7 @@ function setGetSetsRequestObject(metricSelectedOption,granularity,startDate,endD
 
 $(".submit-button").click(function(e){
 	e.preventDefault();
+	requestObject={};
 	var serverSelectedOption = getSelectedItemFromServerDropDownList();
 	var metricSelectedOption = getSelectedItemFromMetricDropDownList();
 	var granularity = getValueFromGranularityTextBox();
@@ -231,9 +243,18 @@ $(".submit-button").click(function(e){
 	var serverUrl = generateFullAPIUrl(serverSelectedOption,getRadioState,getSetsRadioState);
 
 	var startDate=getValueFromStartDateAndTimePicker();
-	var endDate=getValueFromEndtDateAndTimePicker();
+	if(typeof startDate === "undefined"){
+		return;
+	}
+	var endDate=getValueFromEndDateAndTimePicker();
+	if(typeof endDate === "undefined"){
+		return;
+	}
 
 	var cluster=getValueClusterTextBox();
+	if(typeof cluster === "undefined"){
+		return;
+	}
 
 	var page=getPageFromPageTextBox();
 	var platform=getPlatformFromPlatformTextBox();

@@ -12,6 +12,7 @@
 		<!-- <link rel="stylesheet" type="text/css" href="./bootstrap-3.1.1-dist/css/bootstrap.min.css"> -->
 		<link rel="stylesheet" type="text/css" href="./silviomoreto-bootstrap-select/bootstrap-select.min.css">
 		<link rel="stylesheet" type="text/css" href="./bootstrap-datetimepicker-0.0.11/css/bootstrap-datetimepicker.min.css">
+		<link rel="stylesheet" type="text/css" href="./font-awesome-4.1.0/css/font-awesome.min.css">
 	</head>
 	<body>
 		<div class = "header-section">
@@ -23,7 +24,7 @@
 		        <div class="accordion-heading" id="redhawkQueryHader">
 		            <a href="#collapseOne" data-parent="#myAccordion" data-toggle="collapse" class="accordion-toggle">Redhawk Query</a>
 		        </div>
-		        <div class="accordion-body collapse" id="collapseOne" >
+		        <div class="accordion-body collapse in" id="collapseOne" >
 		            <div class="accordion-inner" id ="queryAccordionInner">
 		               <div class="mandatory-section">		
 							<div class="redhawk-filter-header"></div>
@@ -114,20 +115,19 @@
 		        <div class="accordion-heading" id="redhawkGraphHader">
 		            <a href="#collapseTwo" data-parent="#myAccordion" data-toggle="collapse" class="accordion-toggle">Redhawk Result Graph</a>
 		        </div>
-		        <div class="accordion-body collapse in" id="collapseTwo">
+		        <div class="accordion-body collapse" id="collapseTwo">
 		            <div class="accordion-inner" id ="graphAccordionInner">
-		                  <div class="mandatory-section">		
-							<div class="redhawk-filter-header"></div>
-					        <div class="url-selection-container">
-					        	<form action="" class = "url-selection-form">
+		                  <div class="graph-input-container">		
+					        <div class="graph-input-method-container">
+					        	<form action="" class = "graph-input-method-form">
 					        		method :
-									<input  type="radio" id = "getRadio" name="url-selection" value="Get" checked>get
-									<input class = "getsets-checkbox" id = "getSetsRadio" type="radio" name="url-selection" value="GetSets">getsets
+									<input  type="radio" id = "getRadioGraph" name="url-selection" value="Get" checked>get
+									<input class = "getsets-checkbox-Graph" id = "getSetsRadioGraph" type="radio" name="url-selection" value="GetSets">getsets
 								</form>
 					        </div>
-					     	<div class="metric-list-container">
-					     		<div class="metric-list-label">Metric : </div>
-					        	<select class = "metric-list selectpicker" id = "metricList" data-width="290px">
+					     	<div class="metric-list-graph-container">
+					     		<div class="metric-list-graph-label">Metric : </div>
+					        	<select class = "metric-graph-list selectpicker" id = "metricList" data-width="290px">
 						          <option value = "1">FE.PagePerformance.RedirectTime</option>
 						          <option value = "2">FE.PagePerformance.DnsTime</option>
 						          <option value = "3">FE.PagePerformance.ConnectTime</option>
@@ -141,54 +141,25 @@
 						          <option value = "11">FE-PAGELOADTIME</option>
 						        </select>
 					        </div>
-					        <div class="granularity-container">
-					     		<div class="granularity-label" rel="tooltip" title="accept only integer">Granularity : </div>
-					     		<input  type="text" class = "granularity-text-box form-control" rel="tooltip" title="accept only integer">
+					        <div class="granularity-graph-container">
+					     		<div class="granularity-graph-label" rel="tooltip" title="accept only integer">Granularity : </div>
+					     		<input  type="text" class = "granularity-text-graph-box form-control" rel="tooltip" title="accept only integer">
 					        </div>
-					        <div class="dataset-container">
-					     		<div class="dataset-label" rel="tooltip" title="avaliable with getsets">Dataset : </div>
-					     		<input  type="text" class = "dataset-text-box form-control" id = "dataSetTextBox" rel="tooltip" title="avaliable with getsets" disabled>
+					        <div class="dataset-graph-container">
+					     		<div class="dataset-graph-label" rel="tooltip" title="avaliable with getsets">Dataset : </div>
+					     		<input  type="text" class = "dataset-text-graph-box form-control" id = "dataSetTextBox" rel="tooltip" title="avaliable with getsets" disabled>
 					        </div>
-					        <div class="date-time-picker-contatiner">
-					        	<div class="start-date-time-picker-container">
-						        	<div class="start-date-time-label">start : </div>
-						        	<div id="dateTimePickerStart" class="start-date-time-picker input-append date">
-									    <input class="start-date-time-value" data-format="yyyy-MM-dd hh:mm:ss" type="text"></input>
-									    <span class="add-on">
-									      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
-									      </i>
-									    </span>
-									 </div>
-								 </div>
-								 <div class="end-date-time-picker-container">
-						        	<div class="end-date-time-label">end : </div>
-						        	<div id="dateTimePickerEnd" class="end-date-time-picker input-append date">
-									    <input class="end-date-time-value" data-format="yyyy-MM-dd hh:mm:ss" type="text"></input>
-									    <span class="add-on">
-									      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
-									      </i>
-									    </span>
-									 </div>
-								 </div>
+					        <div class="dataPoint-graph-container">
+					     		<div class="dataPoint-graph-label" rel="tooltip" title="avaliable with getsets">Datapoint : </div>
+					     		<textarea  type="text" class = "dataPoint-text-graph-box form-control" id = "dataPointTextBox" rel="tooltip" title="avaliable with getsets"></textarea>
 					        </div>
-					        <div class="cluster-contatiner">
-				        		<div class="cluster-label" rel="tooltip" title="seperate cluster by comma, insert in order">Cluster : </div>
-				        		<input  type="text" class = "cluster-text-box form-control" rel="tooltip" title="seperate cluster by comma, insert in order">
-				        	</div>
+					        <div class="add-datapoints-button-container">
+					        	<i class="fa fa-plus plus-icon"></i>
+					        	<div class="add-datapoints-text"> Data Points</div>
+					        </div>
+					        
 				        </div>
-				        <hr class = "optional-line" align="center" width="80%">
-				        <div class="optional-section">
-				        	<div class="optional-section-header">Optional Section</div>
-				        	<div class="page-contatiner">
-				        		<div class="page-label" rel="tooltip" title="seperate page by comma, insert in order">Page : </div>
-				        		<input  type="text" class = "page-text-box form-control" rel="tooltip" title="seperate page by comma, insert in order">
-				        	</div>
-				        	<div class="platform-contatiner">
-				        		<div class="platform-label" rel="tooltip" title="seperate platform by comma, insert in order">Platform : </div>
-				        		<input  type="text" class = "platform-text-box form-control" rel="tooltip" title="seperate platform by comma, insert in order">
-				        	</div>
-				        </div>
-				        <div class = "submit-button">Submit</div>
+				        <div class = "submit-graph-button">Submit</div>
 		            </div>
 		        </div>
 		    </div>
@@ -201,11 +172,37 @@
 	        </div> -->
 		</div>
 		<div class ="result-tab" >
-			<textarea class = "result-text-area" id = "resultTextArea" readonly></textarea>
+			<div class="query-result">
+				<div class="alert alert-danger flash-alert-message">
+				  <div class="alert-link"></div>
+				</div>
+				<textarea class = "result-text-area" id = "resultTextArea" readonly></textarea>
+				<div class = "plot-graph-shortcut-button">Plot Graph</div>
+			</div>
+
+			<div class="graph-result">
+				<div class="performance-label"></div>
+				<div class="graph-label" id = "graphLabel"></div>
+				<div class="instruction">
+					Instruction
+					<br>1. place JSON on the gray textarea on the right
+					<br>2. click submit
+					<br>3. the graph will show up on the left hand side.
+					<br>4. the label of each graph will show on the top right when there are multiple graph.
+				</div>
+				<canvas id="myChart" width="1200" height="800"></canvas>
+				<textarea class = "json-text-area"></textarea>
+
+			</div>
 		</div>
+
+		
 
 
 		<script src= "./redhawk-query.js"></script>
+		<script src= "./redhawk-chart.js"></script>
+		<link rel="stylesheet" type="text/css" href="chart.css">
+		
 		<link rel="stylesheet" type="text/css" href="api-call.css">
 		<script  type = 'text/javascript'>
 			$('.selectpicker').selectpicker();
