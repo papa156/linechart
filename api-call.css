@@ -314,8 +314,19 @@
 }
 /***********************************************end of optional section********************************************************/
 
-
-
+/***********************************************accordion section******************************************************/
+#query-accordion-inner{
+	height: 793px;
+}
+.accordion-toggle{
+	font-weight: bolder;
+	font-size: 18px;
+	color: #000000;
+}
+.accordion-heading:hover{
+	background-color: #FAFAFA;
+}
+/***********************************************end of ccordion section************************************************/
 @media screen and (max-width: 1366px) and (max-height: 768px){
     .filter-tab{
 		height: 632px;
