@@ -65,7 +65,7 @@ function plotOneGraph(inputJSON){
 
 function plotMultipleGraph(datasets){
 	//$(".performance-label").text("multiple datasets");
-	$("#graphLabel").hide();
+	$("#graphLabel").show();
 	var datasetsList = [];
 	var colorList = [];
 	var sumCountRatioListofList = [];

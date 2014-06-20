@@ -311,6 +311,7 @@ $(".plot-graph-shortcut-button").click(function(e){
 	var queryResult = getValueFromQueryResultTextArea();
 	if(typeof queryResult !=="undefined"){
 		if(typeof queryResult.dataSets !== "undefined"){
+			removeLabel();
 			var labelList = plotMultipleGraph(queryResult.dataSets);
 			renderLabel(labelList);
 		}else{
@@ -323,6 +324,13 @@ $(".plot-graph-shortcut-button").click(function(e){
 	$(".graph-result").show();
 
 });
+
+
+$("#redhawkQueryHader").click(function(){
+	$(".query-result").show();
+	$(".graph-result").hide();
+});
+
 
 
 

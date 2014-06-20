@@ -604,6 +604,9 @@
 	left: 180px;
 	width: 100px;
 }
+#dataSetTextGraphBox{
+	cursor: text;
+}
 .dataPoint-graph-container{
 	position: relative;
 	width: 400px;

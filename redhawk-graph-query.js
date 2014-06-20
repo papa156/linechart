@@ -41,15 +41,23 @@ function setGetGraphRequestObject(metricSelectedOption,granularity,dataPointList
 	plotOneGraph(graphRequestObject);
 };
 
+function setGetSetsGraphRequestObject(metricSelectedOption,granularity,dataPointList,datasetList){
+	graphRequestObject.dataSets = {};
+	for (var i = datasetList.length - 1; i >= 0; i--) {
+		graphRequestObject.dataSets[datasetList[i]] = {};
+		graphRequestObject.dataSets[datasetList[i]].metric = metricSelectedOption;
+		graphRequestObject.dataSets[datasetList[i]].granularity = granularity;
+		graphRequestObject.dataSets[datasetList[i]].measurementStat = {};
+		graphRequestObject.dataSets[datasetList[i]].dataPoints = dataPointList[i];
+	};
+	removeLabel();
+	var labelList = plotMultipleGraph(graphRequestObject.dataSets);
+	renderLabel(labelList);
+};
+
 function preFromatDatapoints(dataPoints){
 	var dataPointsList = [];
 	var index=0;
-	// while(index <= dataPoints.length){
-	// 	var tempString = dataPoints.substring(index,dataPoints.indexOf("}")+1).trim();
-	// 	dataPointsList.push(JSON.parse(tempString));
-	// 	index = dataPoints.indexOf("}")+2;
-	// 	dataPoints = dataPoints.substring(dataPoints.indexOf("}")+2,dataPoints.length);
-	// }
 	dataPointsList = dataPoints.split("}");
 	dataPointsList.pop();
 	dataPointsList[0] = JSON.parse(dataPointsList[0] + "}");
@@ -58,6 +66,30 @@ function preFromatDatapoints(dataPoints){
 		dataPointsList[i] = JSON.parse(dataPointsList[i]+"}");
 	}
 	return dataPointsList;
+};
+
+function getValueFromMultipleDatasetsTextArea(){
+	var dataPointsListOfList = [];
+	var dataPointsDOM = document.getElementById("dataPointGraphContainer");
+	for(var i=0;i<dataPointsDOM.children.length;i++){
+		if(dataPointsDOM.children[i].tagName.toLowerCase() === "textarea"){
+			if(typeof dataPointsDOM.children[i].value !== "undefined"){
+				var dataPoints = preFromatDatapoints(dataPointsDOM.children[i].value);
+				dataPointsListOfList.push(dataPoints);
+			}
+		}
+	}
+	return dataPointsListOfList;
+};
+
+function getDatasetsForGraphGetSets(){
+	var dataSetsVal = $(".dataset-text-graph-box").val();
+	if(dataSetsVal === ""){
+		setFlashMessage("error","Datasets is mandatory in getsets");
+		return;
+	}
+	var dataSetsList = dataSetsVal.split(',');
+	return dataSetsList; 
 };
 
 $("#getRadioGraph").click(function(e){
@@ -69,19 +101,18 @@ $("#getRadioGraph").click(function(e){
 		graphContainerSumOfChildNode = graphContainerSumOfChildNode-1;
 		dataPointButtonTopOffset = dataPointButtonTopOffset-addDataPointHeight-20;
 		$(".datapoints-button-container").css("top",dataPointButtonTopOffset);
-		console.log(document.getElementById("dataPointGraphContainer").childNodes.length);
 	}
-	// while(graphContainerSumOfChildNode>5){
-	// 	$("#dataPointGraphContainer").children().last().remove();
-	// 	graphContainerSumOfChildNode = graphContainerSumOfChildNode -1;
-	// 	var addDataPointHeight = $("#dataPointTextBox").height();
-	// 	dataPointButtonTopOffset = dataPointButtonTopOffset-addDataPointHeight-20;
-	// 	$(".datapoints-button-container").css("top",dataPointButtonTopOffset);
-	// }
+
+	$("#dataSetTextGraphBox").attr("disabled",true);
+	$(".dataset-text-graph-box").attr("data-original-title","avaliable with getsets");
+	$(".dataset-graph-label").attr("data-original-title","avaliable with getsets");
 });
 
 $("#getSetsRadioGraph").click(function(e){
 	$(".datapoints-button-container").show();
+	$("#dataSetTextGraphBox").removeAttr("disabled");
+	$(".dataset-text-graph-box").attr("data-original-title","seperate by comma, insert in order");
+	$(".dataset-graph-label").attr("data-original-title","seperate by comma, insert in order");
 });
 
 $(".add-datapoints-button-container").click(function(){
@@ -107,10 +138,15 @@ $(".delete-datapoints-button-container").click(function(){
 	$(".datapoints-button-container").css("top",dataPointButtonTopOffset);
 });
 
+$("#redhawkGraphHader").click(function(){
+	$(".query-result").hide();
+	$(".graph-result").show();
+});
+
 $(".submit-graph-button").click(function(e){
 	e.preventDefault();
 	graphRequestObject = {};
-	var raioStateList = getStateFromRadioCheckBox();
+	var raioStateList = getStateFromGraphRadioCheckBox();
 	var getRadioState = raioStateList.getRadioState;
 	var getSetsRadioState = raioStateList.getSetsRadioState;
 
@@ -127,8 +163,9 @@ $(".submit-graph-button").click(function(e){
 		setGetGraphRequestObject(metricSelectedOption,granularity,dataPointList);
 	}else if(getSetsRadioState === true){
 		$("#dataSetTextGraphBox").removeAttr("disabled");
-		var datasetList=getDatasetsForGetSets();
-		//setGetSetsRequestObject(metricSelectedOption,granularity,startDate,endDate,serverUrl,cluster,datasetList,page,platform);
+		var dataPointsListOfList = getValueFromMultipleDatasetsTextArea();
+		var datasetList = getDatasetsForGraphGetSets();
+		setGetSetsGraphRequestObject(metricSelectedOption,granularity,dataPointsListOfList,datasetList);
 	}
 
 	$(".query-result").hide();
@@ -136,3 +173,4 @@ $(".submit-graph-button").click(function(e){
 
 
 });
+
