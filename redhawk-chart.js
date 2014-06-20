@@ -31,6 +31,7 @@ function getTimeList(dataPoints){
 };
 
 function plotOneGraph(inputJSON){
+	$("#graphLabel").hide();
 	var metric = inputJSON.metric
 	setHeaderLabel(metric);
 
@@ -63,8 +64,8 @@ function plotOneGraph(inputJSON){
 };
 
 function plotMultipleGraph(datasets){
-	$(".performance-label").text("multiple datasets");
-
+	//$(".performance-label").text("multiple datasets");
+	$("#graphLabel").hide();
 	var datasetsList = [];
 	var colorList = [];
 	var sumCountRatioListofList = [];

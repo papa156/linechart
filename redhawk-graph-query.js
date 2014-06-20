@@ -32,12 +32,12 @@ function getValueFromGraphGranularityTextBox(){
 	return granularityInt;  
 };
 
-function setGetGraphRequestObject(metricSelectedOption,granularity,dataPoints){
+function setGetGraphRequestObject(metricSelectedOption,granularity,dataPointList){
 	graphRequestObject.metric = metricSelectedOption;
 	graphRequestObject.granularity = granularity;
 	graphRequestObject.dataPoints = [];
 	graphRequestObject.measurementStat = {};
-	graphRequestObject.dataPoints.push(dataPoints);
+	graphRequestObject.dataPoints = dataPointList;
 	plotOneGraph(graphRequestObject);
 };
 
@@ -57,7 +57,7 @@ function preFromatDatapoints(dataPoints){
 		dataPointsList[i] = dataPointsList[i].substring(1,dataPointsList[i].length);
 		dataPointsList[i] = JSON.parse(dataPointsList[i]+"}");
 	}
-	console.log(dataPointsList);
+	return dataPointsList;
 };
 
 $("#getRadioGraph").click(function(e){
@@ -123,8 +123,8 @@ $(".submit-graph-button").click(function(e){
 	if(getRadioState === true){
 		$("#dataSetTextGraphBox").attr("disabled",true);
 		var dataPoints = $(".dataPoint-text-graph-box").val();
-		preFromatDatapoints(dataPoints);
-		//setGetGraphRequestObject(metricSelectedOption,granularity,dataPoints);
+		var dataPointList = preFromatDatapoints(dataPoints);
+		setGetGraphRequestObject(metricSelectedOption,granularity,dataPointList);
 	}else if(getSetsRadioState === true){
 		$("#dataSetTextGraphBox").removeAttr("disabled");
 		var datasetList=getDatasetsForGetSets();
