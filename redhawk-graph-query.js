@@ -94,8 +94,8 @@ function getDatasetsForGraphGetSets(){
 
 $("#getRadioGraph").click(function(e){
 	$(".datapoints-button-container").hide();
-	graphContainerSumOfChildNode = document.getElementById("dataPointGraphContainer").childNodes.length;
-	for(var i=graphContainerSumOfChildNode;i>5;i--){
+	graphContainerSumOfChildNode = document.getElementById("dataPointGraphContainer").children.length;
+	for(var i=graphContainerSumOfChildNode;i>2;i--){
 		$("#dataPointGraphContainer").children().last().remove();
 		var addDataPointHeight = $("#dataPointTextBox").height();
 		graphContainerSumOfChildNode = graphContainerSumOfChildNode-1;
@@ -123,13 +123,13 @@ $(".add-datapoints-button-container").click(function(){
 });
 
 $(".delete-datapoints-button-container").click(function(){
-	var graphContainerSumOfChildNodeLocal = document.getElementById("dataPointGraphContainer").childNodes.length;
-	if(typeof graphContainerSumOfChildNode !== 'undefined'){
-		if(graphContainerSumOfChildNode !== graphContainerSumOfChildNodeLocal){
-			graphContainerSumOfChildNodeLocal = graphContainerSumOfChildNode;
-		}
-	}
-	if(graphContainerSumOfChildNodeLocal<=5){
+	var graphContainerSumOfChildNodeLocal = document.getElementById("dataPointGraphContainer").children.length;
+	// if(typeof graphContainerSumOfChildNode !== 'undefined'){
+	// 	if(graphContainerSumOfChildNode !== graphContainerSumOfChildNodeLocal){
+	// 		graphContainerSumOfChildNodeLocal = graphContainerSumOfChildNode;
+	// 	}
+	// }
+	if(graphContainerSumOfChildNodeLocal<=2){
 		return;
 	}
 	var addDataPointHeight = $("#dataPointTextBox").height();
