@@ -32,11 +32,32 @@ function getValueFromGraphGranularityTextBox(){
 	return granularityInt;  
 };
 
-function setGetRequestObject(metricSelectedOption,granularity,startDate,endDate,serverUrl,cluster,page,platform){
+function setGetGraphRequestObject(metricSelectedOption,granularity,dataPoints){
 	graphRequestObject.metric = metricSelectedOption;
 	graphRequestObject.granularity = granularity;
 	graphRequestObject.dataPoints = [];
 	graphRequestObject.measurementStat = {};
+	graphRequestObject.dataPoints.push(dataPoints);
+	plotOneGraph(graphRequestObject);
+};
+
+function preFromatDatapoints(dataPoints){
+	var dataPointsList = [];
+	var index=0;
+	// while(index <= dataPoints.length){
+	// 	var tempString = dataPoints.substring(index,dataPoints.indexOf("}")+1).trim();
+	// 	dataPointsList.push(JSON.parse(tempString));
+	// 	index = dataPoints.indexOf("}")+2;
+	// 	dataPoints = dataPoints.substring(dataPoints.indexOf("}")+2,dataPoints.length);
+	// }
+	dataPointsList = dataPoints.split("}");
+	dataPointsList.pop();
+	dataPointsList[0] = JSON.parse(dataPointsList[0] + "}");
+	for(var i=1;i<dataPointsList.length;i++){
+		dataPointsList[i] = dataPointsList[i].substring(1,dataPointsList[i].length);
+		dataPointsList[i] = JSON.parse(dataPointsList[i]+"}");
+	}
+	console.log(dataPointsList);
 };
 
 $("#getRadioGraph").click(function(e){
@@ -88,6 +109,7 @@ $(".delete-datapoints-button-container").click(function(){
 
 $(".submit-graph-button").click(function(e){
 	e.preventDefault();
+	graphRequestObject = {};
 	var raioStateList = getStateFromRadioCheckBox();
 	var getRadioState = raioStateList.getRadioState;
 	var getSetsRadioState = raioStateList.getSetsRadioState;
@@ -100,11 +122,17 @@ $(".submit-graph-button").click(function(e){
 
 	if(getRadioState === true){
 		$("#dataSetTextGraphBox").attr("disabled",true);
-		//setGetRequestObject(metricSelectedOption,granularity,startDate,endDate,serverUrl,cluster,page,platform);
+		var dataPoints = $(".dataPoint-text-graph-box").val();
+		preFromatDatapoints(dataPoints);
+		//setGetGraphRequestObject(metricSelectedOption,granularity,dataPoints);
 	}else if(getSetsRadioState === true){
 		$("#dataSetTextGraphBox").removeAttr("disabled");
 		var datasetList=getDatasetsForGetSets();
 		//setGetSetsRequestObject(metricSelectedOption,granularity,startDate,endDate,serverUrl,cluster,datasetList,page,platform);
 	}
+
+	$(".query-result").hide();
+	$(".graph-result").show();
+
 
 });
