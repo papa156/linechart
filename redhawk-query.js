@@ -7,6 +7,8 @@ var serverUrlList = {
 
 var requestObject = {};
 
+var dataPointButtonTopOffset = 200;
+
 $("#getRadio").click(function(){
 	$("#dataSetTextBox").attr("disabled",true);
 	$(".dataset-text-box").attr("data-original-title","avaliable with getsets");
@@ -20,7 +22,12 @@ $("#getSetsRadio").click(function(){
 });
 
 $(".add-datapoints-button-container").click(function(){
-	 $("#dataPointTextBox").clone().appendTo("dataPoint-graph-container");
+	var heightTransition = $("#dataPointTextBox").height();
+	var addDataPointTop = $(".add-datapoints-button-container").position().top;
+	var addDataPointHeight = $("#dataPointTextBox").height();
+	$("#dataPointTextBox").clone().appendTo(".dataPoint-graph-container");
+	dataPointButtonTopOffset = dataPointButtonTopOffset+addDataPointHeight+20;
+	$(".add-datapoints-button-container").css("top",dataPointButtonTopOffset);
 });
 
 function showLoadingModal(){
@@ -68,6 +75,9 @@ function getValueFromStartDateAndTimePicker(){
 	var startDate = $(".start-date-time-value").val();
 	if(startDate === ""){
 		setFlashMessage("error","Start date Information is mandatory");
+		if($("#dataSetTextBox").attr("disabled") === true){
+			$("#dataSetTextBox").attr("disabled",true);
+		}
 		return;
 	}
 	//var startDate = startDate.substring(startDate.indexOf(" ")+1,startDate.length);
@@ -321,6 +331,12 @@ $(".plot-graph-shortcut-button").click(function(e){
 	$(".plot-graph-shortcut-button").hide();
 	$(".query-result").hide();
 	$(".graph-result").show();
+
+});
+
+$(".submit-graph-button").click(function(e){
+	e.preventDefault();
+	
 
 });
 

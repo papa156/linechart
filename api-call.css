@@ -438,8 +438,8 @@
 	width: 100px;
 	height: 40px;
 	position: absolute;
-	top: 750px;
-	left: 148px;
+	top: 755px;
+	left: 156px;
 	font-size: 18px;
 	line-height: 2.33;
 	border-radius: 6px;
@@ -487,6 +487,14 @@
 .add-datapoints-text{
 	font-size: 1em;	
 	display: inline-block;
+}
+.graph-input-container{
+	position: absolute;
+	width: 400px;
+	height: 750px;
+	top: 0;
+	overflow-x: hidden;
+	overflow-y: scroll;
 }
 .graph-input-method-container{
 	position: relative;
