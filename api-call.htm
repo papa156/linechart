@@ -129,7 +129,7 @@
 					        </div>
 					     	<div class="metric-list-graph-container">
 					     		<div class="metric-list-graph-label">Metric : </div>
-					        	<select class = "metric-graph-list selectpicker" id = "metricList" data-width="290px">
+					        	<select class = "metric-graph-list selectpicker" id = "metricGraphList" data-width="290px">
 						          <option value = "1">FE.PagePerformance.RedirectTime</option>
 						          <option value = "2">FE.PagePerformance.DnsTime</option>
 						          <option value = "3">FE.PagePerformance.ConnectTime</option>
@@ -149,7 +149,7 @@
 					        </div>
 					        <div class="dataset-graph-container">
 					     		<div class="dataset-graph-label" rel="tooltip" title="avaliable with getsets">Dataset : </div>
-					     		<input  type="text" class = "dataset-text-graph-box form-control" id = "dataSetTextBox" rel="tooltip" title="avaliable with getsets" disabled>
+					     		<input  type="text" class = "dataset-text-graph-box form-control" id = "dataSetTextGraphBox" rel="tooltip" title="avaliable with getsets" disabled>
 					        </div>
 					        <div class="dataPoint-graph-container" id = "dataPointGraphContainer">
 					     		<div class="dataPoint-graph-label" rel="tooltip" title="avaliable with getsets">Datapoint : </div>
@@ -202,6 +202,7 @@
 
 		<script src= "./redhawk-query.js"></script>
 		<script src= "./redhawk-chart.js"></script>
+		<script src= "./redhawk-graph-query.js"></script>
 		<link rel="stylesheet" type="text/css" href="chart.css">
 		
 		<link rel="stylesheet" type="text/css" href="api-call.css">

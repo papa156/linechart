@@ -464,6 +464,7 @@
 	height: 50px;
 	position: relative;
 	top:200px;
+	display: none;
 }
 .add-datapoints-button-container{
 	position: relative;

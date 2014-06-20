@@ -7,7 +7,6 @@ var serverUrlList = {
 
 var requestObject = {};
 
-var dataPointButtonTopOffset = 200;
 
 
 function showLoadingModal(){
@@ -17,8 +16,6 @@ function showLoadingModal(){
 function hideLoadingModal(){
 	$(".loading-screen").fadeOut();
 };
-
-
 
 function setFlashMessage(status,message){
 	$(".alert-link").html(message);
@@ -35,6 +32,7 @@ function getSelectedItemFromMetricDropDownList(){
 	var metricDropdownList = document.getElementById("metricList");
 	return metricDropdownList.options[metricDropdownList.selectedIndex].text;
 };
+
 
 function getValueFromGranularityTextBox(){
 	var granularity = $(".granularity-text-box").val();
@@ -243,23 +241,6 @@ $("#getSetsRadio").click(function(){
 	$(".dataset-label").attr("data-original-title","seperate by comma, insert in order");
 });
 
-$(".add-datapoints-button-container").click(function(){
-	var addDataPointHeight = $("#dataPointTextBox").height();
-	$("#dataPointTextBox").clone().appendTo(".dataPoint-graph-container");
-	dataPointButtonTopOffset = dataPointButtonTopOffset+addDataPointHeight+20;
-	$(".datapoints-button-container").css("top",dataPointButtonTopOffset);
-});
-
-$(".delete-datapoints-button-container").click(function(){
-	var graphConainerSumOfChildNode = document.getElementById("dataPointGraphContainer").childNodes.length;
-	if(graphConainerSumOfChildNode<=5){
-		return;
-	}
-	var addDataPointHeight = $("#dataPointTextBox").height();
-	$("#dataPointGraphContainer").children().last().remove();
-	dataPointButtonTopOffset = dataPointButtonTopOffset-addDataPointHeight-20;
-	$(".datapoints-button-container").css("top",dataPointButtonTopOffset);
-});
 
 $(".submit-button").click(function(e){
 	e.preventDefault();
@@ -343,10 +324,6 @@ $(".plot-graph-shortcut-button").click(function(e){
 
 });
 
-$(".submit-graph-button").click(function(e){
-	e.preventDefault();
-	
 
-});
 
 
