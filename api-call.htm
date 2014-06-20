@@ -68,7 +68,7 @@
 					        </div>
 					        <div class="dataset-container">
 					     		<div class="dataset-label" rel="tooltip" title="avaliable with getsets">Dataset : </div>
-					     		<input  type="text" class = "dataset-text-box form-control" id = "dataSetTextBox" rel="tooltip" title="avaliable with getsets" disabled>
+					     		<input  type="text" class = "dataset-text-box form-control" id = "dataSetTextBox" rel="tooltip" data-toggle="popover" title="avaliable with getsets" disabled>
 					        </div>
 					        <div class="date-time-picker-contatiner">
 					        	<div class="start-date-time-picker-container">
@@ -110,6 +110,14 @@
 				        	</div>
 				        </div>
 				        <div class = "submit-button" data-toggle="modal" data-target="#myModal">Submit</div>
+				        <!-- <div class = "query-mode-container">
+				        	<div class = "query-input-mode-container">
+				        		input mode
+				        	</div>
+				        	<div class = "query-text-area-mode-container">
+				        		
+				        	</div>
+				        </div> -->
 		            </div>
 		        </div>
 		    </div>    
@@ -188,6 +196,9 @@
 			</div>
 
 			<div class="graph-result">
+				<div class="alert alert-danger flash-alert-message2">
+				  <div class="alert-link2"></div>
+				</div>
 				<div class="graph-label" id = "graphLabel"></div>
 				<canvas id="myChart" width="1200" height="800"></canvas>
 			</div>
@@ -207,10 +218,12 @@
 		
 		<link rel="stylesheet" type="text/css" href="api-call.css">
 		<script  type = 'text/javascript'>
+			$(document).ready(function(){
+			   // $("[rel=tooltip]").tooltip({ placement: 'right'}); 
+			});
 			$('.selectpicker').selectpicker();
 			$('#dateTimePickerStart').datetimepicker();
 			$('#dateTimePickerEnd').datetimepicker();
-			$("[rel=tooltip]").tooltip({ placement: 'right'});
 			$('.accordion-toggle').on('click',function(e){
 			    if($(this).parents('.accordion-group').children('.accordion-body').hasClass('in')){
 			    	e.preventDefault();

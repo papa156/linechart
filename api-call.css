@@ -132,7 +132,7 @@
   	transition: visibility 0s 2s, opacity 2s linear;
 }
 
-/***********************************************end ofresult section******************************************************/
+/***********************************************end of result section******************************************************/
 
 
 
@@ -455,6 +455,13 @@
 }
 .accordion-group{
 	height: auto;
+}
+.query-mode-container{
+	position: absolute;
+	left: 0;
+	width: 100%;
+	bottom: 0;
+	height: 50px;
 }
 
 /***********************************************end of accordion section************************************************/

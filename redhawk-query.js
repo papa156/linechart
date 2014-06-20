@@ -7,7 +7,7 @@ var serverUrlList = {
 
 var requestObject = {};
 
-
+var getFlag;
 
 function showLoadingModal(){
 	$(".loading-screen").fadeIn();
@@ -53,7 +53,7 @@ function getValueFromStartDateAndTimePicker(){
 	var startDate = $(".start-date-time-value").val();
 	if(startDate === ""){
 		setFlashMessage("error","Start date Information is mandatory");
-		if($("#dataSetTextBox").attr("disabled") === true){
+		if(getFlag === true){
 			$("#dataSetTextBox").attr("disabled",true);
 		}
 		return;
@@ -66,6 +66,9 @@ function getValueFromEndDateAndTimePicker(){
 	var endDate = $(".end-date-time-value").val();
 	if(endDate === ""){
 		setFlashMessage("error","End date Information is mandatory");
+		if(getFlag === true){
+			$("#dataSetTextBox").attr("disabled",true);
+		}
 		return;
 	}
 	//var endDate = endDate.substring(endDate.indexOf(" ")+1,endDate.length);
@@ -76,6 +79,9 @@ function getValueClusterTextBox(){
 	var cluster = $(".cluster-text-box").val();
 	if(cluster === ""){
 		setFlashMessage("error","Cluster Information is mandatory");
+		if(getFlag === true){
+			$("#dataSetTextBox").attr("disabled",true);
+		}
 		return;
 	}
 	var clusterList = cluster.split(',');
@@ -85,6 +91,7 @@ function getValueClusterTextBox(){
 function getStateFromRadioCheckBox(){
 	var getRadio = document.getElementById("getRadio");
 	var getSetsRadio = document.getElementById("getSetsRadio");
+	getFlag = getRadio.checked;
 	var getRadioState = getRadio.checked;
 	var getSetsRadioState = getSetsRadio.checked;
 	return {getRadioState:getRadioState,getSetsRadioState:getSetsRadioState}
@@ -231,14 +238,14 @@ function getValueFromQueryResultTextArea(){
 
 $("#getRadio").click(function(){
 	$("#dataSetTextBox").attr("disabled",true);
-	$(".dataset-text-box").attr("data-original-title","avaliable with getsets");
-	$(".dataset-label").attr("data-original-title","avaliable with getsets");
+	$(".dataset-text-box").attr("title","avaliable with getsets");
+	$(".dataset-label").attr("title","avaliable with getsets");
 });
 
 $("#getSetsRadio").click(function(){
 	$("#dataSetTextBox").removeAttr("disabled");
-	$(".dataset-text-box").attr("data-original-title","seperate by comma, insert in order");
-	$(".dataset-label").attr("data-original-title","seperate by comma, insert in order");
+	$(".dataset-text-box").attr("title","seperate by comma, insert in order");
+	$(".dataset-label").attr("title","seperate by comma, insert in order");
 });
 
 
@@ -322,7 +329,8 @@ $(".plot-graph-shortcut-button").click(function(e){
 	$(".plot-graph-shortcut-button").hide();
 	$(".query-result").hide();
 	$(".graph-result").show();
-
+	// $('#collapseTwo').collapse('show');
+	// $('#collapseOne').collapse('hide');
 });
 
 
