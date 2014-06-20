@@ -439,7 +439,7 @@
 	height: 40px;
 	position: absolute;
 	top: 755px;
-	left: 156px;
+	left: 140px;
 	font-size: 18px;
 	line-height: 2.33;
 	border-radius: 6px;
@@ -459,12 +459,47 @@
 
 /***********************************************end of accordion section************************************************/
 /***********************************************graph input section******************************************************/
+.datapoints-button-container{
+	width: 100%;
+	height: 50px;
+	position: relative;
+	top:200px;
+}
 .add-datapoints-button-container{
 	position: relative;
-	display: block;
+	display: inline-block;
 	margin-left: auto;
 	margin-right: auto;
-	top:200px;
+	color: #fff;
+	background-color: #7B1FDF;
+	border-color: #7B1FDF;
+	width: 150px;
+	height: 40px;
+	font-size: 18px;
+	line-height: 2.33;
+	border-radius: 6px;
+	font-weight: bolder;
+	cursor: pointer;
+	text-align: center;
+	margin-right: 38px;
+	left: 20px;
+}
+.add-datapoints-button-container:hover{
+	background-color: #A565EB;
+	border-color: #A565EB;
+}
+.plus-icon{
+	font-size: 1em;
+}
+.add-datapoints-text{
+	font-size: 1em;	
+	display: inline-block;
+}
+.delete-datapoints-button-container{
+	position: relative;
+	display: inline-block;
+	margin-left: auto;
+	margin-right: auto;
 	color: #fff;
 	background-color: #929292;
 	border-color: #929292;
@@ -477,14 +512,14 @@
 	cursor: pointer;
 	text-align: center;
 }
-.add-datapoints-button-container:hover{
+.delete-datapoints-button-container:hover{
 	background-color: #B4B4B4;
 	border-color: #B4B4B4;
 }
-.plus-icon{
+.delete-icon{
 	font-size: 1em;
 }
-.add-datapoints-text{
+.delete-datapoints-text{
 	font-size: 1em;	
 	display: inline-block;
 }
