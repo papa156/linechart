@@ -51,13 +51,13 @@
 .graph-label{
 	position: absolute;
 	background-color: #F7F7F7;
-    width: 400px;
-    height: 100px;
+    width: 150px;
+    height: 200px;
     font-size: 14px;
 	line-height: 1;
 	text-align: center;
-	left: 1300px;
-	top: 10px;
+	left: 1250px;
+	top: 300px;
 	padding: 10px 10px 10px 10px;
 }
 

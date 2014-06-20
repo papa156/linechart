@@ -23,6 +23,14 @@ $(".add-datapoints-button-container").click(function(){
 	 $("#dataPointTextBox").clone().appendTo("dataPoint-graph-container");
 });
 
+function showLoadingModal(){
+	$(".loading-screen").fadeIn();
+};
+
+function hideLoadingModal(){
+	$(".loading-screen").fadeOut();
+};
+
 
 
 function setFlashMessage(status,message){
@@ -154,9 +162,10 @@ function requestQueryResult(serverUrl,inputQuery,callback){
         data : inputQuery,
         crossDomain : true
     }).fail(function(jqXHR, textStatus, errorThrown){
+		hideLoadingModal();
     	setFlashMessage("error","Query fail");
-    	console.log(jqXHR, textStatus, errorThrown);
 	}).done(function(result,status){
+		hideLoadingModal();
 		callback(result);
 	});
 	
@@ -227,9 +236,17 @@ function setGetSetsRequestObject(metricSelectedOption,granularity,startDate,endD
 	});
 };
 
+function getValueFromQueryResultTextArea(){
+	var textAreaVal = $(".result-text-area").val();
+	return JSON.parse(textAreaVal);  
+};
+
 
 $(".submit-button").click(function(e){
 	e.preventDefault();
+	$(".query-result").show();
+	$(".graph-result").hide();
+
 	requestObject={};
 	var serverSelectedOption = getSelectedItemFromServerDropDownList();
 	var metricSelectedOption = getSelectedItemFromMetricDropDownList();
@@ -259,6 +276,8 @@ $(".submit-button").click(function(e){
 	var page=getPageFromPageTextBox();
 	var platform=getPlatformFromPlatformTextBox();
 
+	showLoadingModal();
+
 	if(getRadioState === true){
 		$("#dataSetTextBox").attr("disabled",true);
 		setGetRequestObject(metricSelectedOption,granularity,startDate,endDate,serverUrl,cluster,page,platform);
@@ -287,5 +306,22 @@ $(".submit-button").click(function(e){
 });
 
 
+$(".plot-graph-shortcut-button").click(function(e){
+	e.preventDefault();
+	var queryResult = getValueFromQueryResultTextArea();
+	if(typeof queryResult !=="undefined"){
+		if(typeof queryResult.dataSets !== "undefined"){
+			var labelList = plotMultipleGraph(queryResult.dataSets);
+			renderLabel(labelList);
+		}else{
+			plotOneGraph(queryResult);
+		}
+
+	}
+	$(".plot-graph-shortcut-button").hide();
+	$(".query-result").hide();
+	$(".graph-result").show();
+
+});
 
 

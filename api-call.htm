@@ -3,6 +3,7 @@
 	<head>
 		<title>Redhawk Helper</title>
 		<script src= "./jquery.js"></script>
+		<script src="./underscore-min.js"></script>
 		<!--<script src="./bootstrap-3.1.1-dist/js/bootstrap.min.js"></script>-->
 		<script type="text/javascript" src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>
 		<script src="./silviomoreto-bootstrap-select/bootstrap-select.min.js"></script>
@@ -13,6 +14,7 @@
 		<link rel="stylesheet" type="text/css" href="./silviomoreto-bootstrap-select/bootstrap-select.min.css">
 		<link rel="stylesheet" type="text/css" href="./bootstrap-datetimepicker-0.0.11/css/bootstrap-datetimepicker.min.css">
 		<link rel="stylesheet" type="text/css" href="./font-awesome-4.1.0/css/font-awesome.min.css">
+		<script src="./Chart.js-master/Chart.js"></script>
 	</head>
 	<body>
 		<div class = "header-section">
@@ -107,7 +109,7 @@
 				        		<input  type="text" class = "platform-text-box form-control" rel="tooltip" title="seperate platform by comma, insert in order">
 				        	</div>
 				        </div>
-				        <div class = "submit-button">Submit</div>
+				        <div class = "submit-button" data-toggle="modal" data-target="#myModal">Submit</div>
 		            </div>
 		        </div>
 		    </div>    
@@ -181,21 +183,15 @@
 			</div>
 
 			<div class="graph-result">
-				<div class="performance-label"></div>
 				<div class="graph-label" id = "graphLabel"></div>
-				<div class="instruction">
-					Instruction
-					<br>1. place JSON on the gray textarea on the right
-					<br>2. click submit
-					<br>3. the graph will show up on the left hand side.
-					<br>4. the label of each graph will show on the top right when there are multiple graph.
-				</div>
 				<canvas id="myChart" width="1200" height="800"></canvas>
-				<textarea class = "json-text-area"></textarea>
-
 			</div>
 		</div>
 
+
+		<div class = "loading-screen">
+			<img class = "loading-image" src="./image/loading.gif">
+		</div>
 		
 
 
