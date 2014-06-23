@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Redhawk Helper</title>
+		<script src= "./vendor/jquery.js"></script>
+		<script src="./vendor/underscore-min.js"></script>
+		<!--<script src="./bootstrap-3.1.1-dist/js/bootstrap.min.js"></script>-->
+		<script type="text/javascript" src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>
+		<script src="./vendor/silviomoreto-bootstrap-select/bootstrap-select.min.js"></script>
+		<link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
+		<script src="./vendor/bootstrap-datetimepicker-0.0.11/js/bootstrap-datetimepicker.min.js"></script>
+		<script type="text/javascript" src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.pt-BR.js"></script>
+		<!-- <link rel="stylesheet" type="text/css" href="./bootstrap-3.1.1-dist/css/bootstrap.min.css"> -->
+		<link rel="stylesheet" type="text/css" href="./vendor/silviomoreto-bootstrap-select/bootstrap-select.min.css">
+		<link rel="stylesheet" type="text/css" href="./vendor/bootstrap-datetimepicker-0.0.11/css/bootstrap-datetimepicker.min.css">
+		<link rel="stylesheet" type="text/css" href="./font-awesome-4.1.0/css/font-awesome.min.css">
+		<script src="./vendor/Chart.js-master/Chart.js"></script>
+	</head>
+	<body>
+		<div class = "header-section">
+			<div class="header-text-contianer">Redhawk Helper</div>
+		</div>
+		<div class="filter-tab">
+		<div id="myAccordion" class="accordion">
+		    <div class="accordion-group">
+		        <div class="accordion-heading" id="redhawkQueryHader">
+		            <a href="#collapseOne" data-parent="#myAccordion" data-toggle="collapse" class="accordion-toggle">Redhawk Query</a>
+		        </div>
+		        <div class="accordion-body collapse in" id="collapseOne" >
+		            <div class="accordion-inner" id ="queryAccordionInner">
+		               <div class="mandatory-section">		
+							<div class="redhawk-filter-header"></div>
+							<div class = "server-list-container">
+								<div class="server-list-label">Redhawk in </div>
+								<select class = "server-list selectpicker" id = "serverList" data-live-search="true">
+						          <option value = "1">HKG - Hong Kong</option>
+						          <option value = "2">ASH - Ashbourne</option>
+						          <option value = "3">AMS - Amsterdam</option>
+						          <option value = "4">DEV - Development</option>
+						        </select>
+					        </div>
+					        <div class="url-selection-container">
+					        	<form action="" class = "url-selection-form">
+					        		method :
+									<input  type="radio" id = "getRadio" name="url-selection" value="Get" checked>get
+									<input class = "getsets-checkbox" id = "getSetsRadio" type="radio" name="url-selection" value="GetSets">getsets
+								</form>
+					        </div>
+					     	<div class="metric-list-container">
+					     		<div class="metric-list-label">Metric : </div>
+					        	<select class = "metric-list selectpicker" id = "metricList" data-width="290px" data-live-search="true">
+						          <option value = "1">FE.PagePerformance.RedirectTime</option>
+						          <option value = "2">FE.PagePerformance.DnsTime</option>
+						          <option value = "3">FE.PagePerformance.ConnectTime</option>
+						          <option value = "4">FE.PagePerformance.RequestTime</option>
+						          <option value = "5">FE.PagePerformance.DomLoadTime</option>
+						          <option value = "6">FE.PagePerformance.ResponseTime</option>
+						          <option value = "7">FE.PagePerformance.DomReadyTime</option>
+						          <option value = "8">FE.PagePerformance.DomContentLoadedTime</option>
+						          <option value = "9">FE.PagePerformance.DomCompleteTime</option>
+						          <option value = "10">FE.PagePerformance.LoadEventTime</option>
+						          <option value = "11">FE-PAGELOADTIME</option>
+						        </select>
+					        </div>
+					        <div class="granularity-container">
+					     		<div class="granularity-label" rel="tooltip" title="accept only integer">Granularity : </div>
+					     		<input  type="text" class = "granularity-text-box form-control" rel="tooltip" title="accept only integer">
+					        </div>
+					        <div class="dataset-container">
+					     		<div class="dataset-label" rel="tooltip" title="avaliable with getsets">Dataset : </div>
+					     		<input  type="text" class = "dataset-text-box form-control" id = "dataSetTextBox" rel="tooltip" data-toggle="popover" title="avaliable with getsets" disabled>
+					        </div>
+					        <div class="date-time-picker-contatiner">
+					        	<div class="start-date-time-picker-container">
+						        	<div class="start-date-time-label">start : </div>
+						        	<div id="dateTimePickerStart" class="start-date-time-picker input-append date">
+									    <input class="start-date-time-value" data-format="yyyy-MM-dd hh:mm:ss" type="text"></input>
+									    <span class="add-on">
+									      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+									      </i>
+									    </span>
+									 </div>
+								 </div>
+								 <div class="end-date-time-picker-container">
+						        	<div class="end-date-time-label">end : </div>
+						        	<div id="dateTimePickerEnd" class="end-date-time-picker input-append date">
+									    <input class="end-date-time-value" data-format="yyyy-MM-dd hh:mm:ss" type="text"></input>
+									    <span class="add-on">
+									      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+									      </i>
+									    </span>
+									 </div>
+								 </div>
+					        </div>
+					        <div class="cluster-contatiner">
+				        		<div class="cluster-label" rel="tooltip" title="seperate cluster by comma, insert in order">Cluster : </div>
+				        		<input  type="text" class = "cluster-text-box form-control" rel="tooltip" title="seperate cluster by comma, insert in order">
+				        	</div>
+				        </div>
+				        <hr class = "optional-line" align="center" width="80%">
+				        <div class="optional-section">
+				        	<div class="optional-section-header">Optional Section</div>
+				        	<div class="page-container">
+				        		<div class="page-label" rel="tooltip" title="seperate page by comma, insert in order">Page : </div>
+				        		<input  type="text" class = "page-text-box form-control" rel="tooltip" title="seperate page by comma, insert in order">
+				        	</div>
+				        	<div class="platform-container">
+				        		<div class="platform-label" rel="tooltip" title="seperate platform by comma, insert in order">Platform : </div>
+				        		<input  type="text" class = "platform-text-box form-control" rel="tooltip" title="seperate platform by comma, insert in order">
+				        	</div>
+				        </div>
+				        <div class = "submit-button" data-toggle="modal" data-target="#myModal">Submit</div>
+				        <!-- <div class = "query-mode-container">
+				        	<div class = "query-input-mode-container">
+				        		input mode
+				        	</div>
+				        	<div class = "query-text-area-mode-container">
+				        		
+				        	</div>
+				        </div> -->
+		            </div>
+		        </div>
+		    </div>    
+		    <div class="accordion-group" id ="accordion2">
+		        <div class="accordion-heading" id="redhawkGraphHader">
+		            <a href="#collapseTwo" data-parent="#myAccordion" data-toggle="collapse" class="accordion-toggle">Redhawk Result Graph</a>
+		        </div>
+		        <div class="accordion-body collapse" id="collapseTwo">
+		            <div class="accordion-inner" id ="graphAccordionInner">
+		                <div class="graph-input-container">		
+					        <div class="graph-input-method-container">
+					        	<form action="" class = "graph-input-method-form">
+					        		method :
+									<input  type="radio" id = "getRadioGraph" name="url-selection" value="Get" checked>get
+									<input class = "getsets-checkbox-Graph" id = "getSetsRadioGraph" type="radio" name="url-selection" value="GetSets">getsets
+								</form>
+					        </div>
+					     	<div class="metric-list-graph-container">
+					     		<div class="metric-list-graph-label">Metric : </div>
+					        	<select class = "metric-graph-list selectpicker" id = "metricGraphList" data-width="290px" data-live-search="true">
+						          <option value = "1">FE.PagePerformance.RedirectTime</option>
+						          <option value = "2">FE.PagePerformance.DnsTime</option>
+						          <option value = "3">FE.PagePerformance.ConnectTime</option>
+						          <option value = "4">FE.PagePerformance.RequestTime</option>
+						          <option value = "5">FE.PagePerformance.DomLoadTime</option>
+						          <option value = "6">FE.PagePerformance.ResponseTime</option>
+						          <option value = "7">FE.PagePerformance.DomReadyTime</option>
+						          <option value = "8">FE.PagePerformance.DomContentLoadedTime</option>
+						          <option value = "9">FE.PagePerformance.DomCompleteTime</option>
+						          <option value = "10">FE.PagePerformance.LoadEventTime</option>
+						          <option value = "11">FE-PAGELOADTIME</option>
+						        </select>
+					        </div>
+					        <div class="granularity-graph-container">
+					     		<div class="granularity-graph-label" rel="tooltip" title="accept only integer">Granularity : </div>
+					     		<input  type="text" class = "granularity-text-graph-box form-control" rel="tooltip" title="accept only integer">
+					        </div>
+					        <div class="dataset-graph-container">
+					     		<div class="dataset-graph-label" rel="tooltip" title="avaliable with getsets">Dataset : </div>
+					     		<input  type="text" class = "dataset-text-graph-box form-control" id = "dataSetTextGraphBox" rel="tooltip" title="avaliable with getsets" disabled>
+					        </div>
+					        <div class="dataPoint-graph-container" id = "dataPointGraphContainer">
+					     		<div class="dataPoint-graph-label" rel="tooltip" title="insert JSON object seperate by comma">Datapoint : </div>
+					     		<textarea  type="text" class = "dataPoint-text-graph-box form-control" id = "dataPointTextBox" rel="tooltip" title="insert JSON object seperate by comma"></textarea>
+					        </div>
+					        <div class ="datapoints-button-container">
+						        <div class="add-datapoints-button-container">
+						        	<i class="fa fa-plus plus-icon"></i>
+						        	<div class="add-datapoints-text"> Data Points</div>
+						        </div>
+						        <div class="delete-datapoints-button-container">
+						        	<i class="fa fa-minus delete-icon"></i>
+						        	<div class="delete-datapoints-text"> Data Points</div>
+						        </div>
+					        </div>
+				        </div>
+				        <div class = "submit-graph-button">Submit</div>
+		            </div>
+		        </div>
+		    </div>
+		 </div>
+		 <div class="accordion-footer"></div>
+
+	        <!-- <div class="query-input-container">
+	        	<div class="query-input-header-label">Query:</div>
+	        	<textarea class="query-input-textarea"></textarea>
+	        </div> -->
+		</div>
+		<div class ="result-tab" >
+			<div class="query-result">
+				<div class="alert alert-danger flash-alert-message">
+				  <div class="alert-link"></div>
+				</div>
+				<textarea class = "result-text-area" id = "resultTextArea" readonly></textarea>
+				<div class = "plot-graph-shortcut-button">Plot Graph</div>
+			</div>
+
+			<div class="graph-result">
+				<div class="alert alert-danger flash-alert-message2">
+				  <div class="alert-link2"></div>
+				</div>
+				<div class="graph-label" id = "graphLabel"></div>
+				<canvas id="myChart" width="1000" height="600"></canvas>
+			</div>
+		</div>
+
+
+		<div class = "loading-screen">
+			<img class = "loading-image" src="./image/loading.gif">
+		</div>
+		
+
+
+		<script src= "./src/redhawk-query.js"></script>
+		<script src= "./src/redhawk-chart.js"></script>
+		<script src= "./src/redhawk-graph-query.js"></script>
+		<link rel="stylesheet" type="text/css" href="./style/chart.css">
+		
+		<link rel="stylesheet" type="text/css" href="./style/global-section.css">
+		<link rel="stylesheet" type="text/css" href="./style/accordion-section.css">
+		<link rel="stylesheet" type="text/css" href="./style/mandatory-section.css">
+		<link rel="stylesheet" type="text/css" href="./style/optional-section.css">
+		<link rel="stylesheet" type="text/css" href="./style/graph-input-section.css">
+		<link rel="stylesheet" type="text/css" href="./style/result-section.css">
+		<link rel="stylesheet" type="text/css" href="./style/media-query.css">
+		<script  type = 'text/javascript'>
+			$(document).ready(function(){
+			   $("[rel=tooltip]").tooltip({ placement: 'right'}); 
+			});
+			$('.selectpicker').selectpicker();
+			$('#dateTimePickerStart').datetimepicker();
+			$('#dateTimePickerEnd').datetimepicker();
+			$('.accordion-toggle').on('click',function(e){
+			    if($(this).parents('.accordion-group').children('.accordion-body').hasClass('in')){
+			    	e.preventDefault();
+			        e.stopPropagation();
+			    }
+			});
+		</script>
+	</body>
+</html>
