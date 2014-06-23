@@ -1,0 +1,169 @@
+.datapoints-button-container{
+	width: 100%;
+	height: 50px;
+	position: relative;
+	top:200px;
+	display: none;
+}
+.add-datapoints-button-container{
+	position: relative;
+	display: inline-block;
+	margin-left: auto;
+	margin-right: auto;
+	color: #fff;
+	background-color: #7B1FDF;
+	border-color: #7B1FDF;
+	width: 150px;
+	height: 40px;
+	font-size: 18px;
+	line-height: 2.33;
+	border-radius: 6px;
+	font-weight: bolder;
+	cursor: pointer;
+	text-align: center;
+	margin-right: 38px;
+	left: 20px;
+}
+.add-datapoints-button-container:hover{
+	background-color: #A565EB;
+	border-color: #A565EB;
+}
+.plus-icon{
+	font-size: 1em;
+}
+.add-datapoints-text{
+	font-size: 1em;	
+	display: inline-block;
+}
+.delete-datapoints-button-container{
+	position: relative;
+	display: inline-block;
+	margin-left: auto;
+	margin-right: auto;
+	color: #fff;
+	background-color: #929292;
+	border-color: #929292;
+	width: 150px;
+	height: 40px;
+	font-size: 18px;
+	line-height: 2.33;
+	border-radius: 6px;
+	font-weight: bolder;
+	cursor: pointer;
+	text-align: center;
+}
+.delete-datapoints-button-container:hover{
+	background-color: #B4B4B4;
+	border-color: #B4B4B4;
+}
+.delete-icon{
+	font-size: 1em;
+}
+.delete-datapoints-text{
+	font-size: 1em;	
+	display: inline-block;
+}
+.graph-input-container{
+	position: absolute;
+	width: 400px;
+	height: 750px;
+	top: 0;
+	overflow-y: scroll;
+}
+.graph-input-method-container{
+	position: relative;
+	width: 400px;
+	height: 40px;
+	top: 30px;
+}
+.graph-input-method-form{
+	position: absolute;
+	width: auto;
+	height: auto;
+	left: 80px;
+}
+#getRadioGraph{
+	margin-left: 20px;
+}
+#getSetsRadioGraph{
+	margin-left: 50px;
+}
+.metric-list-graph-container{
+	position: relative;
+	width: 400px;
+	height: 40px;
+	top: 30px;
+}
+.metric-list-graph-label{
+	position: absolute;
+	width: auto;
+	height: auto;
+	left: 10px; 
+	top: 5px;
+}
+.metric-graph-list{
+	position: absolute;
+	left: 65px;
+}
+
+.granularity-graph-container{
+	position: relative;
+	width: 400px;
+	height: 40px;
+	top: 50px;
+}
+.granularity-graph-label{
+	position: absolute;
+	width: auto;
+	height: auto;
+	left: 90px; 
+	top: 5px;	
+}
+.granularity-text-graph-box{
+	position: absolute;
+	left: 205px;
+	width: 50px;
+}
+.dataset-graph-container{
+	position: relative;
+	width: 400px;
+	height: 40px;
+	top: 66px;
+}
+.dataset-graph-label{
+	position: absolute;
+	width: auto;
+	height: auto;
+	left: 90px; 
+	top: 5px;	
+}
+.dataset-text-graph-box{
+	position: absolute;
+	left: 180px;
+	width: 100px;
+}
+#dataSetTextGraphBox{
+	cursor: text;
+}
+.dataPoint-graph-container{
+	position: relative;
+	width: 400px;
+	height: 40px;
+	top: 76px;
+}
+.dataPoint-graph-label{
+	position: relative;
+	width: auto;
+	height: auto;
+	left: 20px; 
+	top: 5px;	
+}
+.dataPoint-text-graph-box{
+	position: relative;
+	left: 20px;
+	width: 300px;
+	height: 100px;
+	top: 10px;
+	outline: none;
+	resize:none;
+}

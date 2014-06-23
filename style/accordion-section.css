@@ -1,0 +1,56 @@
+#queryAccordionInner{
+	height: 788px;
+}
+#graphAccordionInner{
+	height: 788px;
+}
+.accordion-toggle{
+	font-weight: bolder;
+	font-size: 18px;
+	color: #000000;
+}
+.accordion-heading:hover{
+	background-color: #FAFAFA;
+}
+.accordion-footer{
+	position: absolute;
+	width: 100%;
+	height: 20px;
+	background-color: #C7C7C7;
+	top: 885px;
+}
+.submit-graph-button{
+	color: #fff;
+	background-color: #18bc9c;
+	border-color: #18bc9c;
+	width: 100px;
+	height: 40px;
+	position: absolute;
+	top: 755px;
+	left: 140px;
+	font-size: 18px;
+	line-height: 2.33;
+	border-radius: 6px;
+	font-weight: bolder;
+	cursor: pointer;
+	text-align: center;
+}
+.submit-graph-button:hover{
+	background-color:#21ECC5;
+}
+.accordion-body.in { 
+	overflow:visible; 
+}
+.accordion-body.in:hover { 
+	overflow:visible; 
+}
+.accordion-group{
+	height: auto;
+}
+.query-mode-container{
+	position: absolute;
+	left: 0;
+	width: 100%;
+	bottom: 0;
+	height: 50px;
+}

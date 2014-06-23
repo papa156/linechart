@@ -1,0 +1,51 @@
+.filter-tab{
+	background-color: #F0F0F0;
+	position:absolute;
+	height: 905px;
+	width: 400px;
+	top: 50px;
+	left: 0;
+}
+.result-tab{
+	background-color: #FFFFFF;
+	position: absolute;
+	height: 900px;
+	width: 1517px;
+	left: 400px;
+	top: 50px;
+}
+.header-section{
+	position: absolute;
+	width: 1920px;
+	height:50px;
+	background-color: #767979;
+	top: 0;
+	left: 0;
+}
+.header-text-contianer{
+	font-weight: bolder;
+	font-size: 24px;
+	top: 10px;
+	left: 20px;
+	position: absolute;
+}
+.loading-screen{
+	position:absolute;
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+	background-color: rgba(0, 0, 0, 0.5);
+	display: none;
+}
+.loading-image{
+	display: block;
+	margin: auto;
+	top: 0;
+	bottom: 0;
+	position: absolute;
+	left: 0;
+	right: 0;
+	width: 58px;
+	height: auto;
+}

@@ -1,0 +1,81 @@
+.result-text-area{
+	width: 900px;
+	height: 500px;
+	position: absolute;
+	outline: none;
+	resize:none;
+	left: 300px;
+	top: 180px;
+	overflow: auto;
+	background-color: #FFFFFF !important;
+}
+.plot-graph-shortcut-button{
+	position: relative;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	top: 750px;
+	color: #fff;
+	background-color: #FF4FEA;
+	border-color: #FF4FEA;
+	width: 150px;
+	height: 40px;
+	font-size: 18px;
+	line-height: 2.33;
+	border-radius: 6px;
+	font-weight: bolder;
+	cursor: pointer;
+	text-align: center;
+	display: none;
+}
+.plot-graph-shortcut-button:hover{
+	background-color: #FC9CF0;
+	border-color: #FC9CF0;
+}
+.flash-alert-message{
+	position: absolute;
+	width:400px;
+	height: 100px;
+	top: 30px;
+	left: 545px;
+	display: none;
+}
+.flash-alert-message2{
+	position: absolute;
+	width:400px;
+	height: 100px;
+	top: 30px;
+	left: 545px;
+	display: none;
+}
+.alert-link{
+	text-decoration: none;
+	color: #a94442;
+	cursor: default;
+	font-size: 18px;
+	top: 49px;
+	position: absolute;
+	text-align: center;
+	width: 100%;
+}
+.alert-link2{
+	text-decoration: none;
+	color: #169E3C;
+	cursor: default;
+	font-size: 18px;
+	top: 49px;
+	position: absolute;
+	text-align: center;
+	width: 100%;
+}
+.query-result{
+	position: absolute;
+	width: 100%;
+	height:100%;
+}
+.graph-result{
+	position: absolute;
+	width: 100%;
+	height:100%;
+	display: none;	
+}

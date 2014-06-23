@@ -1,0 +1,26 @@
+
+@media screen and (max-width: 1366px) and (max-height: 768px){
+    .filter-tab{
+		height: 632px;
+	}
+	.result-tab{
+		height: 625px;
+		width: 966px;
+	}
+	.header-section{
+		width: 1366px;
+		height:50px;
+	}
+	.result-text-area{
+		width: 800px;
+		height: 500px;
+		left: 80px;
+		top: 60px;
+	}
+	.query-input-textarea{
+		height: 300px;
+	}
+	.submit-button{
+		top: 550px;
+	}
+}
