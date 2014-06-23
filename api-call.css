@@ -452,6 +452,9 @@
 	cursor: pointer;
 	text-align: center;
 }
+.submit-graph-button:hover{
+	background-color:#21ECC5;
+}
 .accordion-body.in { 
 	overflow:visible; 
 }
