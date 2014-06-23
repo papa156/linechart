@@ -17,6 +17,17 @@ function hideLoadingModal(){
 	$(".loading-screen").fadeOut();
 };
 
+function resizingCanvas(){
+	var canvas = document.getElementById("myChart");
+	if($(window).height() <= 768 && $(window).width()<=1366){
+		canvas.width = 750;
+		canvas.height = 480;
+	}else{
+		canvas.width = 1000;
+		canvas.height = 600;
+	}
+};
+
 function setFlashMessage(status,message){
 	if(status === "success"){
 		$(".flash-alert-message").removeClass("alert-danger").addClass("alert-success");
@@ -328,6 +339,7 @@ $(".submit-button").click(function(e){
 
 $(".plot-graph-shortcut-button").click(function(e){
 	e.preventDefault();
+	resizingCanvas();
 	var queryResult = getValueFromQueryResultTextArea();
 	if(typeof queryResult !=="undefined"){
 		if(typeof queryResult.dataSets !== "undefined"){
