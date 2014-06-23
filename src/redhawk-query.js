@@ -48,6 +48,8 @@ function getSelectedItemFromServerDropDownList(){
 };
 
 function getSelectedItemFromMetricDropDownList(){
+	// var metricDropdownList = document.getElementById("metricList");
+	// return metricDropdownList.options[metricDropdownList.selectedIndex].text;
 	var metricDropdownList = document.getElementById("metricList");
 	return metricDropdownList.options[metricDropdownList.selectedIndex].text;
 };
