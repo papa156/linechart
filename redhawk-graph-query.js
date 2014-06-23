@@ -87,7 +87,7 @@ function getValueFromMultipleDatasetsTextArea(){
 	var dataPointsDOM = document.getElementById("dataPointGraphContainer");
 	for(var i=0;i<dataPointsDOM.children.length;i++){
 		if(dataPointsDOM.children[i].tagName.toLowerCase() === "textarea"){
-			if(typeof dataPointsDOM.children[i].value !== "undefined"){
+			if(dataPointsDOM.children[i].value !== ""){
 				var dataPoints = preFromatDatapoints(dataPointsDOM.children[i].value);
 				dataPointsListOfList.push(dataPoints);
 			}
@@ -176,13 +176,21 @@ $(".submit-graph-button").click(function(e){
 		var dataPoints = $(".dataPoint-text-graph-box").val();
 		if(dataPoints === ""){
 			setGraphFlashMessage("error","Data points is mandatory");
+			return;
 		}
 		var dataPointList = preFromatDatapoints(dataPoints);
 		setGetGraphRequestObject(metricSelectedOption,granularity,dataPointList);
 	}else if(getSetsRadioState === true){
 		$("#dataSetTextGraphBox").removeAttr("disabled");
-		var dataPointsListOfList = getValueFromMultipleDatasetsTextArea();
 		var datasetList = getDatasetsForGraphGetSets();
+		if(typeof datasetList === "undefined"){
+			return;
+		}
+		var dataPointsListOfList = getValueFromMultipleDatasetsTextArea();
+		if(dataPointsListOfList.length === 0){
+			setGraphFlashMessage("error", "Data points is mandatory");
+			return;
+		}
 		setGetSetsGraphRequestObject(metricSelectedOption,granularity,dataPointsListOfList,datasetList);
 	}
 	setGraphFlashMessage("success", "Query success");
