@@ -1,8 +1,8 @@
 var serverUrlList = {
 	"DEV - Development" : "http://as-agdpapi-3001.agprod2.agoda.local:48090/rest/measurements",
-	"HKG - Hong Kong": "http://dev.www.agoda.com:8081/rest/measurements",
-	"ASH - Ashbourne":"",
-	"AMS - Amsterdam":""
+	"HKG - Hong Kong": "http://hk-agdpapi-2001:38090/rest/measurements",
+	"ASH - Ashbourne":"http://as-agdpapi-3001:38090/rest/measurements",
+	"AMS - Amsterdam":"http://am-agdpapi-4001:38090/rest/measurements"
 };
 
 var requestObject = {};
