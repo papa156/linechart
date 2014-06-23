@@ -68,7 +68,8 @@
 	width: 400px;
 	height: 750px;
 	top: 0;
-	overflow-y: scroll;
+	overflow-y: visible;
+	overflow-x: hidden;
 }
 .graph-input-method-container{
 	position: relative;
