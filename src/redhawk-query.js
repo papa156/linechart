@@ -250,12 +250,16 @@ $("#getRadio").click(function(){
 	$("#dataSetTextBox").attr("disabled",true);
 	$(".dataset-text-box").attr("title","avaliable with getsets");
 	$(".dataset-label").attr("title","avaliable with getsets");
+	$(".dataset-text-box").attr("data-original-title","avaliable with getsets");
+	$(".dataset-label").attr("data-original-title","avaliable with getsets");
 });
 
 $("#getSetsRadio").click(function(){
 	$("#dataSetTextBox").removeAttr("disabled");
 	$(".dataset-text-box").attr("title","seperate by comma, insert in order");
 	$(".dataset-label").attr("title","seperate by comma, insert in order");
+	$(".dataset-text-box").attr("data-original-title","seperate by comma, insert in order");
+	$(".dataset-label").attr("data-original-title","seperate by comma, insert in order");
 });
 
 

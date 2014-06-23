@@ -544,7 +544,6 @@
 	width: 400px;
 	height: 750px;
 	top: 0;
-	overflow-x: hidden;
 	overflow-y: scroll;
 }
 .graph-input-method-container{

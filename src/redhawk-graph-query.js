@@ -121,6 +121,8 @@ $("#getRadioGraph").click(function(e){
 	$("#dataSetTextGraphBox").attr("disabled",true);
 	$(".dataset-text-graph-box").attr("title","avaliable with getsets");
 	$(".dataset-graph-label").attr("title","avaliable with getsets");
+	$(".dataset-text-graph-box").attr("data-original-title","avaliable with getsets");
+	$(".dataset-graph-label").attr("data-original-title","avaliable with getsets");
 });
 
 $("#getSetsRadioGraph").click(function(e){
@@ -128,6 +130,8 @@ $("#getSetsRadioGraph").click(function(e){
 	$("#dataSetTextGraphBox").removeAttr("disabled");
 	$(".dataset-text-graph-box").attr("title","seperate by comma, insert in order");
 	$(".dataset-graph-label").attr("title","seperate by comma, insert in order");
+	$(".dataset-text-graph-box").attr("data-original-title","seperate by comma, insert in order");
+	$(".dataset-graph-label").attr("data-original-title","seperate by comma, insert in order");
 });
 
 $(".add-datapoints-button-container").click(function(){
