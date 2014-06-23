@@ -57,9 +57,9 @@ function getSelectedItemFromMetricDropDownList(){
 	if(metricValue2 === "none"){
 		return metricValue1;
 	}else if(metricValue2 !== "none" && metricValue3 === "none"){
-		return metricValue1+metricValue2;
+		return metricValue1+"."+metricValue2;
 	}else{
-		return metricValue1+metricValue2+metricValue3;
+		return metricValue1+"."+metricValue2+"."+metricValue3;
 	}
 };
 
