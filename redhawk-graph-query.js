@@ -5,9 +5,17 @@ var dataPointButtonTopOffset = 200;
 var graphContainerSumOfChildNode;
 
 function setGraphFlashMessage(status,message){
+	if(status === "success"){
+		$(".flash-alert-message2").removeClass("alert-danger").addClass("alert-success");
+		$(".alert-link2").css("color","#169E3C");
+
+	}else if(status === "error"){
+		$(".flash-alert-message2").removeClass("alert-success").addClass("alert-danger");
+		$(".alert-link2").css("color","#a94442");
+	}
 	$(".alert-link2").html(message);
-	$(".flash-alert-message").show();
-	$(".flash-alert-message").delay(2000).fadeOut();
+	$(".flash-alert-message2").show();
+	$(".flash-alert-message2").delay(2000).fadeOut();
 };
 
 function getSelectedItemFromGraphMetricDropDownList(){
@@ -27,12 +35,12 @@ function getValueFromGraphGranularityTextBox(){
 	var granularity = $(".granularity-text-graph-box").val();
 	var granularityInt;
 	if(granularity === ""){
-		setFlashMessage("error","Granularity is mandatory");
+		setGraphFlashMessage("error","Granularity is mandatory");
 		return;
 	}
 	granularityInt = parseInt(granularity);
 	if (isNaN(granularityInt)){
-		setFlashMessage("error","Granularity value is not integer");
+		setGraphFlashMessage("error","Granularity value is not integer");
         return;
     }
 	return granularityInt;  
@@ -97,6 +105,7 @@ function getDatasetsForGraphGetSets(){
 	var dataSetsList = dataSetsVal.split(',');
 	return dataSetsList; 
 };
+
 
 $("#getRadioGraph").click(function(e){
 	$(".datapoints-button-container").hide();
@@ -165,6 +174,9 @@ $(".submit-graph-button").click(function(e){
 	if(getRadioState === true){
 		$("#dataSetTextGraphBox").attr("disabled",true);
 		var dataPoints = $(".dataPoint-text-graph-box").val();
+		if(dataPoints === ""){
+			setGraphFlashMessage("error","Data points is mandatory");
+		}
 		var dataPointList = preFromatDatapoints(dataPoints);
 		setGetGraphRequestObject(metricSelectedOption,granularity,dataPointList);
 	}else if(getSetsRadioState === true){
@@ -173,10 +185,8 @@ $(".submit-graph-button").click(function(e){
 		var datasetList = getDatasetsForGraphGetSets();
 		setGetSetsGraphRequestObject(metricSelectedOption,granularity,dataPointsListOfList,datasetList);
 	}
-
+	setGraphFlashMessage("success", "Query success");
 	$(".query-result").hide();
 	$(".graph-result").show();
-
-
 });
 

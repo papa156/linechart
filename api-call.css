@@ -97,6 +97,14 @@
 	left: 545px;
 	display: none;
 }
+.flash-alert-message2{
+	position: absolute;
+	width:400px;
+	height: 100px;
+	top: 30px;
+	left: 545px;
+	display: none;
+}
 .alert-link{
 	text-decoration: none;
 	color: #a94442;
@@ -107,13 +115,15 @@
 	text-align: center;
 	width: 100%;
 }
-.alert-link:hover{
+.alert-link2{
 	text-decoration: none;
-	color: #a94442;
-}
-.alert-link:active{
-	text-decoration: none;
-	color: #a94442;
+	color: #169E3C;
+	cursor: default;
+	font-size: 18px;
+	top: 49px;
+	position: absolute;
+	text-align: center;
+	width: 100%;
 }
 .query-result{
 	position: absolute;
@@ -125,11 +135,6 @@
 	width: 100%;
 	height:100%;
 	display: none;	
-}
-.fade {
-  	visibility: hidden;
-  	opacity: 0;
-  	transition: visibility 0s 2s, opacity 2s linear;
 }
 
 /***********************************************end of result section******************************************************/
