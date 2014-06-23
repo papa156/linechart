@@ -308,14 +308,18 @@ $(".submit-button").click(function(e){
 	var page=getPageFromPageTextBox();
 	var platform=getPlatformFromPlatformTextBox();
 
-	showLoadingModal();
 
 	if(getRadioState === true){
 		$("#dataSetTextBox").attr("disabled",true);
+		showLoadingModal();
 		setGetRequestObject(metricSelectedOption,granularity,startDate,endDate,serverUrl,cluster,page,platform);
 	}else if(getSetsRadioState === true){
 		$("#dataSetTextBox").removeAttr("disabled");
 		var datasetList=getDatasetsForGetSets();
+		if(typeof datasetList === "undefined"){
+			return;
+		}
+		showLoadingModal();
 		setGetSetsRequestObject(metricSelectedOption,granularity,startDate,endDate,serverUrl,cluster,datasetList,page,platform);
 	}
 	
@@ -354,8 +358,6 @@ $(".plot-graph-shortcut-button").click(function(e){
 	$(".plot-graph-shortcut-button").hide();
 	$(".query-result").hide();
 	$(".graph-result").show();
-	// $('#collapseTwo').collapse('show');
-	// $('#collapseOne').collapse('hide');
 });
 
 
