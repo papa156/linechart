@@ -48,10 +48,19 @@ function getSelectedItemFromServerDropDownList(){
 };
 
 function getSelectedItemFromMetricDropDownList(){
-	// var metricDropdownList = document.getElementById("metricList");
-	// return metricDropdownList.options[metricDropdownList.selectedIndex].text;
 	var metricDropdownList = document.getElementById("metricList");
-	return metricDropdownList.options[metricDropdownList.selectedIndex].text;
+	var metricDropdownList2 = document.getElementById("metricList2");
+	var metricDropdownList3 = document.getElementById("metricList3");
+	var metricValue1 = metricDropdownList.options[metricDropdownList.selectedIndex].text;
+	var metricValue2 = metricDropdownList2.options[metricDropdownList2.selectedIndex].text;
+	var metricValue3 = metricDropdownList3.options[metricDropdownList3.selectedIndex].text;
+	if(metricValue2 === "none"){
+		return metricValue1;
+	}else if(metricValue2 !== "none" && metricValue3 === "none"){
+		return metricValue1+metricValue2;
+	}else{
+		return metricValue1+metricValue2+metricValue3;
+	}
 };
 
 
@@ -348,7 +357,10 @@ $(".plot-graph-shortcut-button").click(function(e){
 	resizingCanvas();
 	var queryResult = getValueFromQueryResultTextArea();
 	if(typeof queryResult !=="undefined"){
-		if(typeof queryResult.dataSets !== "undefined"){
+		if(jQuery.isEmptyObject(queryResult)){
+			setFlashMessage("error","There are no data in return result");
+			return;
+		}else if(typeof queryResult.dataSets !== "undefined"){
 			removeLabel();
 			var labelList = plotMultipleGraph(queryResult.dataSets);
 			renderLabel(labelList);
