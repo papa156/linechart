@@ -1,6 +1,11 @@
 //Get the context of the canvas element we want to select
 var ctx = document.getElementById("myChart").getContext("2d");
 
+if($(window).height() <= 768 && $(window).width()<=1366){
+	var canvas = document.getElementById("myChart");
+	canvas.width = 750;
+	canvas.height = 480;
+}
 
 function getValueFromTextArea(){
 	var textAreaVal = $(".json-text-area").val();
@@ -153,11 +158,11 @@ function removeLabel(){
 	myNode.innerHTML = '';
 };
 
-$(".submit-button").click(function(){
+$(".submit-graph-button").click(function(){
 	if($(window).height() <= 768 && $(window).width()<=1366){
 		var canvas = document.getElementById("myChart");
-		canvas.width = 900;
-		canvas.height = 500;
+		canvas.width = 750;
+		canvas.height = 480;
 	}
 
 	if($.trim($(".json-text-area").val()) !== ""){

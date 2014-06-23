@@ -19,7 +19,7 @@
 	font-weight: bolder;
 	color: #6F6F6F;
 }
-.page-contatiner{
+.page-container{
 	position: absolute;
 	width: 100%;
 	height: 40px;
@@ -37,7 +37,7 @@
 	width: 100px;
 	left: 180px;
 }
-.platform-contatiner{
+.platform-container{
 	position: absolute;
 	width: 100%;
 	height: 40px;

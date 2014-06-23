@@ -74,13 +74,13 @@
 	.instruction{
 		font-size: 13px;
 	}
-	.graph-label{
+	/*.graph-label{
 	    width: 300px;
 	    height: 100px;
 		left: 1000px;
 		top: 10px;
 		padding: 10px 10px 10px 10px;
-	}
+	}*/
 	.json-text-area{
 		left: 1000px;
 		width : 313px;
