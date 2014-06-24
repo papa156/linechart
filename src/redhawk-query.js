@@ -534,3 +534,21 @@ $( "#metricList3" ).change(function() {
 $( "#serverList" ).change(function() {
 	serverSelectedOption = getSelectedItemFromServerDropDownList();
 });
+
+$(".add-tags-button-container").click(function(){
+	var initialULHeight = $("#optionalTagContainer").height();
+	$("#optionalTagContainer").clone().appendTo(".optional-section").css("top",initialULHeight+130);
+	// dataPointButtonTopOffset = dataPointButtonTopOffset+addDataPointHeight+20;
+	// $(".tags-button-container").css("top",dataPointButtonTopOffset);
+});
+
+$(".delete-tags-button-container").click(function(){
+	var graphContainerSumOfChildNodeLocal = document.getElementById("optionalSection").children.length;
+	if(graphContainerSumOfChildNodeLocal<=3){
+		return;
+	}
+	var initialULHeight = $("#optionalTagContainer").height();
+	$("#optionalSection").children().last().remove();
+	// dataPointButtonTopOffset = dataPointButtonTopOffset-addDataPointHeight-20;
+	// $(".tags-button-container").css("top",dataPointButtonTopOffset);
+});
