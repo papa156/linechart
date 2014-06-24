@@ -9,6 +9,9 @@ var requestObject = {};
 
 var getFlag;
 
+var serverSelectedOption = getSelectedItemFromServerDropDownList();
+var metricSelectedOption = getSelectedItemFromMetricDropDownList();
+
 function showLoadingModal(){
 	$(".loading-screen").fadeIn();
 };
@@ -63,6 +66,35 @@ function getSelectedItemFromMetricDropDownList(){
 	}
 };
 
+function generateOptionalSectionFromSelectedMetric(metric,serverUrl){
+	var metricObj = {
+		metric : metric
+	};
+	var requestServerURL = serverUrl+"/tagnames";
+	requestAvaliableTagResult(requestServerURL,JSON.stringify(metricObj),function(tagnames){
+		attachOptionalDOMTagNamestoPage(tagnames);
+	});
+};
+
+function requestAvaliableTagResult(serverUrl,inputQuery,callback){
+	$.ajax({
+		type: "POST",
+		url:serverUrl,
+		contentType: 'application/json; charset=utf-8',
+        dataType: "json",
+        data : inputQuery,
+        crossDomain : true
+    }).fail(function(jqXHR, textStatus, errorThrown){
+		
+	}).done(function(result,status){
+		callback(result);
+	});
+	
+};
+
+function attachOptionalDOMTagNamestoPage(tagnames){
+	console.log(tagnames);
+};
 
 function getValueFromGranularityTextBox(){
 	var granularity = $(".granularity-text-box").val();
@@ -291,8 +323,8 @@ $(".submit-button").click(function(e){
 	$(".graph-result").hide();
 
 	requestObject={};
-	var serverSelectedOption = getSelectedItemFromServerDropDownList();
-	var metricSelectedOption = getSelectedItemFromMetricDropDownList();
+	// serverSelectedOption = getSelectedItemFromServerDropDownList();
+	// metricSelectedOption = getSelectedItemFromMetricDropDownList();
 	var granularity = getValueFromGranularityTextBox();
 	if(typeof granularity === "undefined"){
 		return;
@@ -381,6 +413,34 @@ $("#redhawkQueryHader").click(function(){
 });
 
 
+$( "#metricList" ).change(function() {
+	metricSelectedOption = getSelectedItemFromMetricDropDownList();
+	var raioStateList = getStateFromRadioCheckBox();
+	var getRadioState = raioStateList.getRadioState;
+	var getSetsRadioState = raioStateList.getSetsRadioState;
+	var serverUrl = serverUrlList[serverSelectedOption];
+	generateOptionalSectionFromSelectedMetric(metricSelectedOption,serverUrl);
+});
 
+$( "#metricList2" ).change(function() {
+	metricSelectedOption = getSelectedItemFromMetricDropDownList();
+	var raioStateList = getStateFromRadioCheckBox();
+	var getRadioState = raioStateList.getRadioState;
+	var getSetsRadioState = raioStateList.getSetsRadioState;
+	var serverUrl = serverUrlList[serverSelectedOption];
+	generateOptionalSectionFromSelectedMetric(metricSelectedOption,serverUrl);
+});
 
+$( "#metricList3" ).change(function() {
+	metricSelectedOption = getSelectedItemFromMetricDropDownList();
+	var raioStateList = getStateFromRadioCheckBox();
+	var getRadioState = raioStateList.getRadioState;
+	var getSetsRadioState = raioStateList.getSetsRadioState;
+	var serverUrl = serverUrlList[serverSelectedOption];
+	generateOptionalSectionFromSelectedMetric(metricSelectedOption,serverUrl);
+});
 
+$( "#serverList" ).change(function() {
+	serverSelectedOption = getSelectedItemFromServerDropDownList();
+
+});
