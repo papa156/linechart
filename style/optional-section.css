@@ -1,7 +1,7 @@
 .optional-line{	
 	background-color: #CECECE;
 	height: 3px;
-	margin-top: 500px;
+	margin-top: 440px;
 	border-radius: 6px;
 	display: block;
 	margin-left: auto;
@@ -10,7 +10,7 @@
 .optional-section{	
 	position: absolute;
 	width: 100%;
-	height: 200px;
+	height: 274px;
 	left: 0px;
 	overflow-y: visible;
 	overflow-x: auto;
@@ -67,4 +67,71 @@
 }
 li{
 	line-height: 35px;
+}
+
+.tags-button-container{
+	width: 100%;
+	height: 50px;
+	position: relative;
+	top:35px;
+	display: none;
+}
+.add-tags-button-container{
+	position: relative;
+	display: inline-block;
+	margin-left: auto;
+	margin-right: auto;
+	color: #fff;
+	background-color: #7B1FDF;
+	border-color: #7B1FDF;
+	width: 126px;
+	height: 37px;
+	font-size: 16px;
+	line-height: 2.33;
+	border-radius: 6px;
+	font-weight: bolder;
+	cursor: pointer;
+	text-align: center;
+	margin-right: 38px;
+	left:52px;
+}
+.add-tags-button-container:hover{
+	background-color: #A565EB;
+	border-color: #A565EB;
+}
+.plus-tags-icon{
+	font-size: 1em;
+}
+.add-tags-text{
+	font-size: 1em;	
+	display: inline-block;
+}
+.delete-tags-button-container{
+	position: relative;
+	display: inline-block;
+	margin-left: auto;
+	margin-right: auto;
+	color: #fff;
+	background-color: #929292;
+	border-color: #929292;
+	width: 126px;
+	height: 37px;
+	font-size: 16px;
+	line-height: 2.33;
+	border-radius: 6px;
+	font-weight: bolder;
+	cursor: pointer;
+	text-align: center;
+	left: 46px
+}
+.delete-tags-button-container:hover{
+	background-color: #B4B4B4;
+	border-color: #B4B4B4;
+}
+.delete-tags-icon{
+	font-size: 1em;
+}
+.delete-tags-text{
+	font-size: 1em;	
+	display: inline-block;
 }

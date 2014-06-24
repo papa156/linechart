@@ -135,7 +135,7 @@ function createOptionalDropDownListOption(tagname,liTagClass,tagValues){
 function createOptionalDropDownListFromTagname(tagname,liTagClass,metric,serverUrl){
 	var tagnameElement = document.createElement('select');
 	tagnameElement.setAttribute('class', 'optional-select-'+tagname+'-list');
-	tagnameElement.setAttribute('data-width', '220px');
+	tagnameElement.setAttribute('data-width', '240px');
 	tagnameElement.setAttribute('data-live-search', true);
 	tagnameElement.setAttribute('data-size', 8); 
 	tagnameElement.setAttribute('multiple', true);
@@ -396,6 +396,8 @@ function generateTagFilterObjectFromOptionalSection(){
 };
 
 $("#getRadio").click(function(){
+	$(".tags-button-container").hide();
+	$(".optional-tag-container").css("top","26px");
 	$("#dataSetTextBox").attr("disabled",true);
 	$(".dataset-text-box").attr("title","avaliable with getsets");
 	$(".dataset-label").attr("title","avaliable with getsets");
@@ -404,6 +406,8 @@ $("#getRadio").click(function(){
 });
 
 $("#getSetsRadio").click(function(){
+	$(".tags-button-container").show();
+	$(".optional-tag-container").css("top","90px");
 	$("#dataSetTextBox").removeAttr("disabled");
 	$(".dataset-text-box").attr("title","seperate by comma, insert in order");
 	$(".dataset-label").attr("title","seperate by comma, insert in order");
