@@ -72,7 +72,7 @@ function generateOptionalSectionFromSelectedMetric(metric,serverUrl){
 	};
 	var requestServerURL = serverUrl+"/tagnames";
 	requestAvaliableTagResult(requestServerURL,JSON.stringify(metricObj),function(tagnameList){
-		attachOptionalDOMTagNamestoPage(tagnameList);
+		attachOptionalDOMTagNamestoPage(tagnameList,metric,serverUrl);
 	});
 };
 
@@ -97,37 +97,66 @@ function createLILabelInnerHtml(tagname,liTagClass){
 	tagnameElement.innerHTML =tagname + " : ";
 	tagnameElement.style.width = "100px";
 	tagnameElement.style.height = "35px";
+	tagnameElement.style.top = "-5px";
 	tagnameElement.style.position = "relative";
+	tagnameElement.style.display = "inline-block";
 	$(tagnameElement).appendTo("."+liTagClass);
 };
 
-function createOptionalLILabelFromTagnames(tagname){
+function createOptionalLILabelFromTagnames(tagname,metric,serverUrl){
 	var tagnameElement = document.createElement('li');
 	tagnameElement.setAttribute('class', 'optional-li-'+tagname+"-container");
 	//tagnameElement.innerHTML =tagname + " : ";
 	tagnameElement.style.width = "100%";
 	tagnameElement.style.height = "40px";
 	tagnameElement.style.position = "relative";
+	tagnameElement.style.left = "0";
 	$(tagnameElement).appendTo(".optional-tag-container");
 	createLILabelInnerHtml(tagname,'optional-li-'+tagname+"-container");
-	createOptionalDropDownListFromTagname(tagname,'optional-li-'+tagname+"-container");
+	createOptionalDropDownListFromTagname(tagname,'optional-li-'+tagname+"-container",metric,serverUrl);
 
 };
 
-function createOptionalDropDownListFromTagname(tagname,liTagClass){
+function createOptionalDropDownListOption(tagname,liTagClass,tagValues){
+	var tagValuesList = tagValues.names;
+	var tagnameElement = document.createElement('option');
+	tagnameElement.setAttribute('value', i+1);
+	tagnameElement.innerHTML ="none";
+	$(tagnameElement).appendTo("."+liTagClass);
+	for(var i=0;i<tagValuesList.length;i++){
+		var tagnameElement = document.createElement('option');
+		tagnameElement.setAttribute('value', i+2);
+		tagnameElement.innerHTML =tagValuesList[i];
+		$(tagnameElement).appendTo("."+liTagClass);
+	}
+	$('.selectpicker').selectpicker('refresh');
+}	
+
+function createOptionalDropDownListFromTagname(tagname,liTagClass,metric,serverUrl){
 	var tagnameElement = document.createElement('select');
 	tagnameElement.setAttribute('class', 'optional-select-'+tagname+'-list');
-	tagnameElement.setAttribute('class', 'selectpicker');
+	tagnameElement.setAttribute('data-width', '220px');
+	tagnameElement.setAttribute('data-live-search', true);
+	tagnameElement.setAttribute('data-size', 8);
 	tagnameElement.innerHTML =tagname + " : ";
 	tagnameElement.style.width = "100px";
 	tagnameElement.style.position = "absolute";
 	tagnameElement.style.top = "2px";
-	tagnameElement.style.left = "80px";
+	tagnameElement.style.left = "90px";
 	$(tagnameElement).appendTo("."+liTagClass);
+	$("."+'optional-select-'+tagname+'-list').addClass('selectpicker');
+	var requestServerURL = serverUrl + "/tagvalues";
+	var metricObj ={
+		metric : metric,
+		tag : tagname
+	};
+	requestAvaliableTagResult(requestServerURL,JSON.stringify(metricObj),function(tagValues){
+		createOptionalDropDownListOption(tagname,'optional-select-'+tagname+'-list',tagValues);
+	});
 };
 
 
-function attachOptionalDOMTagNamestoPage(tagnameList){
+function attachOptionalDOMTagNamestoPage(tagnameList,metric,serverUrl){
 	console.log(tagnameList);
 	var optionalUL = document.getElementById("optionalTagContainer");
 	optionalUL.innerHTML = "";
@@ -135,16 +164,9 @@ function attachOptionalDOMTagNamestoPage(tagnameList){
 		if(tagname === "names"){
 			var tagnameVal = tagnameList[tagname];
 			for(var i=0;i<tagnameVal.length;i++){
-				createOptionalLILabelFromTagnames(tagnameVal[i]);
+				createOptionalLILabelFromTagnames(tagnameVal[i],metric,serverUrl);
 
 			}
-		}else{
-			var tagnameElement = document.createElement('li');
-			tagnameElement.setAttribute('class', 'optional-'+tagname);
-			tagnameElement.innerHTML =tagname+ " : ";
-			tagnameElement.style.width = "100px";
-			tagnameElement.style.position = "relative";
-			$(tagnameElement).appendTo(".optional-tag-container");
 		}
 	}
 };
