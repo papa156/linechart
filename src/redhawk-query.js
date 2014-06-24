@@ -12,6 +12,9 @@ var getFlag;
 var serverSelectedOption = getSelectedItemFromServerDropDownList();
 var metricSelectedOption = getSelectedItemFromMetricDropDownList();
 
+var serverUrl = serverUrlList[serverSelectedOption];
+generateOptionalSectionFromSelectedMetric(metricSelectedOption,serverUrl);
+
 function showLoadingModal(){
 	$(".loading-screen").fadeIn();
 };
@@ -119,16 +122,13 @@ function createOptionalLILabelFromTagnames(tagname,metric,serverUrl){
 
 function createOptionalDropDownListOption(tagname,liTagClass,tagValues){
 	var tagValuesList = tagValues.names;
-	var tagnameElement = document.createElement('option');
-	tagnameElement.setAttribute('value', i+1);
-	tagnameElement.innerHTML ="none";
-	$(tagnameElement).appendTo("."+liTagClass);
 	for(var i=0;i<tagValuesList.length;i++){
 		var tagnameElement = document.createElement('option');
 		tagnameElement.setAttribute('value', i+2);
 		tagnameElement.innerHTML =tagValuesList[i];
 		$(tagnameElement).appendTo("."+liTagClass);
 	}
+	$('.selectpicker').selectpicker();
 	$('.selectpicker').selectpicker('refresh');
 }	
 
@@ -137,12 +137,14 @@ function createOptionalDropDownListFromTagname(tagname,liTagClass,metric,serverU
 	tagnameElement.setAttribute('class', 'optional-select-'+tagname+'-list');
 	tagnameElement.setAttribute('data-width', '220px');
 	tagnameElement.setAttribute('data-live-search', true);
-	tagnameElement.setAttribute('data-size', 8);
+	tagnameElement.setAttribute('data-size', 8); 
+	tagnameElement.setAttribute('multiple', true);
 	tagnameElement.innerHTML =tagname + " : ";
 	tagnameElement.style.width = "100px";
+	tagnameElement.style.height = "30px";
 	tagnameElement.style.position = "absolute";
 	tagnameElement.style.top = "2px";
-	tagnameElement.style.left = "90px";
+	tagnameElement.style.left = "101px";
 	$(tagnameElement).appendTo("."+liTagClass);
 	$("."+'optional-select-'+tagname+'-list').addClass('selectpicker');
 	var requestServerURL = serverUrl + "/tagvalues";
@@ -374,6 +376,30 @@ function getValueFromQueryResultTextArea(){
 	return JSON.parse(textAreaVal);  
 };
 
+function generateTagFilterObjectFromOptionalSection(){
+	var tagObj = {
+		tags : {}
+	};
+	var tags = tagObj.tags;
+	var optionalTagContainer = document.getElementById('optionalTagContainer');
+	for(var i=0;i<optionalTagContainer.children.length;i++){
+		if(optionalTagContainer.children[i].tagName.toLowerCase() === "li"){
+			var optionalTagFilter = optionalTagContainer.children[i].children[1];
+			var optionalTagLabel = optionalTagContainer.children[i].children[0];
+			if(optionalTagFilter.selectedIndex === -1){
+				continue;
+			}
+			var optionalTagLabelKey = optionalTagLabel.innerHTML.substring(0,optionalTagLabel.innerHTML.indexOf(" "));
+			tags[optionalTagLabelKey] = []; //the drop down have been selected
+			for(var j=0;j<optionalTagFilter.length;j++){
+			 	if(optionalTagFilter[j].selected === true){
+					tags[optionalTagLabelKey].push(optionalTagFilter[j].text);
+			  	}
+			}
+		}
+	}
+	console.log(tagObj);
+};
 
 $("#getRadio").click(function(){
 	$("#dataSetTextBox").attr("disabled",true);
@@ -423,14 +449,15 @@ $(".submit-button").click(function(e){
 		return;
 	}
 
-	var page=getPageFromPageTextBox();
-	var platform=getPlatformFromPlatformTextBox();
+	// var page=getPageFromPageTextBox();
+	// var platform=getPlatformFromPlatformTextBox();
+	var tags = generateTagFilterObjectFromOptionalSection();
 
 
 	if(getRadioState === true){
 		$("#dataSetTextBox").attr("disabled",true);
 		showLoadingModal();
-		setGetRequestObject(metricSelectedOption,granularity,startDate,endDate,serverUrl,cluster,page,platform);
+		setGetRequestObject(metricSelectedOption,granularity,startDate,endDate,serverUrl,cluster);
 	}else if(getSetsRadioState === true){
 		$("#dataSetTextBox").removeAttr("disabled");
 		var datasetList=getDatasetsForGetSets();
@@ -490,32 +517,22 @@ $("#redhawkQueryHader").click(function(){
 
 $( "#metricList" ).change(function() {
 	metricSelectedOption = getSelectedItemFromMetricDropDownList();
-	var raioStateList = getStateFromRadioCheckBox();
-	var getRadioState = raioStateList.getRadioState;
-	var getSetsRadioState = raioStateList.getSetsRadioState;
 	var serverUrl = serverUrlList[serverSelectedOption];
 	generateOptionalSectionFromSelectedMetric(metricSelectedOption,serverUrl);
 });
 
 $( "#metricList2" ).change(function() {
 	metricSelectedOption = getSelectedItemFromMetricDropDownList();
-	var raioStateList = getStateFromRadioCheckBox();
-	var getRadioState = raioStateList.getRadioState;
-	var getSetsRadioState = raioStateList.getSetsRadioState;
 	var serverUrl = serverUrlList[serverSelectedOption];
 	generateOptionalSectionFromSelectedMetric(metricSelectedOption,serverUrl);
 });
 
 $( "#metricList3" ).change(function() {
 	metricSelectedOption = getSelectedItemFromMetricDropDownList();
-	var raioStateList = getStateFromRadioCheckBox();
-	var getRadioState = raioStateList.getRadioState;
-	var getSetsRadioState = raioStateList.getSetsRadioState;
 	var serverUrl = serverUrlList[serverSelectedOption];
 	generateOptionalSectionFromSelectedMetric(metricSelectedOption,serverUrl);
 });
 
 $( "#serverList" ).change(function() {
 	serverSelectedOption = getSelectedItemFromServerDropDownList();
-
 });
