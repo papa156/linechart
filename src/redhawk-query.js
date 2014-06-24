@@ -71,8 +71,8 @@ function generateOptionalSectionFromSelectedMetric(metric,serverUrl){
 		metric : metric
 	};
 	var requestServerURL = serverUrl+"/tagnames";
-	requestAvaliableTagResult(requestServerURL,JSON.stringify(metricObj),function(tagnames){
-		attachOptionalDOMTagNamestoPage(tagnames);
+	requestAvaliableTagResult(requestServerURL,JSON.stringify(metricObj),function(tagnameList){
+		attachOptionalDOMTagNamestoPage(tagnameList);
 	});
 };
 
@@ -91,9 +91,62 @@ function requestAvaliableTagResult(serverUrl,inputQuery,callback){
 	});
 	
 };
+function createLILabelInnerHtml(tagname,liTagClass){
+	var tagnameElement = document.createElement('div');
+	tagnameElement.setAttribute('class', 'optional-'+tagname+"-container");
+	tagnameElement.innerHTML =tagname + " : ";
+	tagnameElement.style.width = "100px";
+	tagnameElement.style.height = "35px";
+	tagnameElement.style.position = "relative";
+	$(tagnameElement).appendTo("."+liTagClass);
+};
 
-function attachOptionalDOMTagNamestoPage(tagnames){
-	console.log(tagnames);
+function createOptionalLILabelFromTagnames(tagname){
+	var tagnameElement = document.createElement('li');
+	tagnameElement.setAttribute('class', 'optional-li-'+tagname+"-container");
+	//tagnameElement.innerHTML =tagname + " : ";
+	tagnameElement.style.width = "100%";
+	tagnameElement.style.height = "40px";
+	tagnameElement.style.position = "relative";
+	$(tagnameElement).appendTo(".optional-tag-container");
+	createLILabelInnerHtml(tagname,'optional-li-'+tagname+"-container");
+	createOptionalDropDownListFromTagname(tagname,'optional-li-'+tagname+"-container");
+
+};
+
+function createOptionalDropDownListFromTagname(tagname,liTagClass){
+	var tagnameElement = document.createElement('select');
+	tagnameElement.setAttribute('class', 'optional-select-'+tagname+'-list');
+	tagnameElement.setAttribute('class', 'selectpicker');
+	tagnameElement.innerHTML =tagname + " : ";
+	tagnameElement.style.width = "100px";
+	tagnameElement.style.position = "absolute";
+	tagnameElement.style.top = "2px";
+	tagnameElement.style.left = "80px";
+	$(tagnameElement).appendTo("."+liTagClass);
+};
+
+
+function attachOptionalDOMTagNamestoPage(tagnameList){
+	console.log(tagnameList);
+	var optionalUL = document.getElementById("optionalTagContainer");
+	optionalUL.innerHTML = "";
+	for(var tagname in tagnameList){
+		if(tagname === "names"){
+			var tagnameVal = tagnameList[tagname];
+			for(var i=0;i<tagnameVal.length;i++){
+				createOptionalLILabelFromTagnames(tagnameVal[i]);
+
+			}
+		}else{
+			var tagnameElement = document.createElement('li');
+			tagnameElement.setAttribute('class', 'optional-'+tagname);
+			tagnameElement.innerHTML =tagname+ " : ";
+			tagnameElement.style.width = "100px";
+			tagnameElement.style.position = "relative";
+			$(tagnameElement).appendTo(".optional-tag-container");
+		}
+	}
 };
 
 function getValueFromGranularityTextBox(){
