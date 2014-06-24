@@ -47,7 +47,7 @@
 								</form>
 					        </div>
 					     	<div class="metric-list-container">
-					     		<div class="metric-list-label">Metric : </div>
+					     		<div class="metric-list-label" rel="tooltip" title="the metric is divide to three seperate portion by dot">Metric : </div>
 					        	<select class = "metric-list selectpicker" id = "metricList" data-width="100px" data-live-search="true" data-size="8">
 						          <option value = "1">3813</option>
 						          <option value = "2">3304</option>
@@ -186,15 +186,19 @@
 				        </div>
 				        <hr class = "optional-line" align="center" width="80%">
 				        <div class="optional-section">
-				        	<div class="optional-section-header">Optional Section</div>
-				        	<div class="page-container">
+				        	<div class="optional-section-header" id = "optionalSectionHeader">Optional Section</div>
+				        	<ul class = "optional-tag-container" id = "optionalTagContainer">
+				        		
+				        	</ul>
+				        	
+				        	<!-- <div class="page-container">
 				        		<div class="page-label" rel="tooltip" title="seperate page by comma, insert in order">Page : </div>
 				        		<input  type="text" class = "page-text-box form-control" rel="tooltip" title="seperate page by comma, insert in order">
 				        	</div>
 				        	<div class="platform-container">
 				        		<div class="platform-label" rel="tooltip" title="seperate platform by comma, insert in order">Platform : </div>
 				        		<input  type="text" class = "platform-text-box form-control" rel="tooltip" title="seperate platform by comma, insert in order">
-				        	</div>
+				        	</div> -->
 				        </div>
 				        <div class = "submit-button" data-toggle="modal" data-target="#myModal">Submit</div>
 				        <!-- <div class = "query-mode-container">
