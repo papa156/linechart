@@ -159,7 +159,6 @@ function createOptionalDropDownListFromTagname(tagname,liTagClass,metric,serverU
 
 
 function attachOptionalDOMTagNamestoPage(tagnameList,metric,serverUrl){
-	console.log(tagnameList);
 	var optionalUL = document.getElementById("optionalTagContainer");
 	optionalUL.innerHTML = "";
 	for(var tagname in tagnameList){
@@ -311,28 +310,24 @@ function updateResult(result){
 	$(".plot-graph-shortcut-button").show();
 };
 
-function setGetRequestObject(metricSelectedOption,granularity,startDate,endDate,serverUrl,cluster,page,platform){
+function setGetRequestObject(metricSelectedOption,granularity,startDate,endDate,serverUrl,tags){
 	requestObject.metric = metricSelectedOption;
 	requestObject.granularity = granularity;
 	requestObject.start = startDate;
 	requestObject.end = endDate;
-	requestObject.tags = {
-		cluster:[
-			cluster
-		]
-	};
-	if(typeof page !== "undefined"){
-		requestObject.tags.page = [];
-		for(var i=0;i<page.length;i++){
-			requestObject.tags.page.push(page[i]);
-		}
-	}
-	if(typeof platform !== "undefined"){
-		requestObject.tags.platform = [];
-		for(var i=0;i<platform.length;i++){
-			requestObject.tags.platform.push(platform[i]);
-		}
-	}
+	requestObject.tags = tags;
+	// if(typeof page !== "undefined"){
+	// 	requestObject.tags.page = [];
+	// 	for(var i=0;i<page.length;i++){
+	// 		requestObject.tags.page.push(page[i]);
+	// 	}
+	// }
+	// if(typeof platform !== "undefined"){
+	// 	requestObject.tags.platform = [];
+	// 	for(var i=0;i<platform.length;i++){
+	// 		requestObject.tags.platform.push(platform[i]);
+	// 	}
+	// }
 	var requestObjectString = JSON.stringify(requestObject);
 	requestQueryResult(serverUrl,requestObjectString,function(result){
 		updateResult(result);
@@ -398,7 +393,6 @@ function generateTagFilterObjectFromOptionalSection(){
 			}
 		}
 	}
-	console.log(tagObj);
 };
 
 $("#getRadio").click(function(){
@@ -444,10 +438,10 @@ $(".submit-button").click(function(e){
 		return;
 	}
 
-	var cluster=getValueClusterTextBox();
-	if(typeof cluster === "undefined"){
-		return;
-	}
+	// var cluster=getValueClusterTextBox();
+	// if(typeof cluster === "undefined"){
+	// 	return;
+	// }
 
 	// var page=getPageFromPageTextBox();
 	// var platform=getPlatformFromPlatformTextBox();
@@ -457,7 +451,7 @@ $(".submit-button").click(function(e){
 	if(getRadioState === true){
 		$("#dataSetTextBox").attr("disabled",true);
 		showLoadingModal();
-		setGetRequestObject(metricSelectedOption,granularity,startDate,endDate,serverUrl,cluster);
+		setGetRequestObject(metricSelectedOption,granularity,startDate,endDate,serverUrl,tags);
 	}else if(getSetsRadioState === true){
 		$("#dataSetTextBox").removeAttr("disabled");
 		var datasetList=getDatasetsForGetSets();
