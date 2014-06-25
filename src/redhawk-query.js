@@ -101,6 +101,7 @@ function createLILabelInnerHtml(tagname,liTagClass){
 	tagnameElement.style.width = "100px";
 	tagnameElement.style.height = "35px";
 	tagnameElement.style.top = "-5px";
+	tagnameElement.style.left = "7px";
 	tagnameElement.style.position = "relative";
 	tagnameElement.style.display = "inline-block";
 	$(tagnameElement).appendTo("."+liTagClass);
@@ -537,9 +538,7 @@ $( "#serverList" ).change(function() {
 
 $(".add-tags-button-container").click(function(){
 	var initialULHeight = $("#optionalTagContainer").height();
-	$("#optionalTagContainer").clone().appendTo(".optional-section").css("top",initialULHeight+130);
-	// dataPointButtonTopOffset = dataPointButtonTopOffset+addDataPointHeight+20;
-	// $(".tags-button-container").css("top",dataPointButtonTopOffset);
+	$("#optionalTagContainer").clone().appendTo(".optional-section").css("top",initialULHeight+50).css("position","relative");
 });
 
 $(".delete-tags-button-container").click(function(){
@@ -549,6 +548,4 @@ $(".delete-tags-button-container").click(function(){
 	}
 	var initialULHeight = $("#optionalTagContainer").height();
 	$("#optionalSection").children().last().remove();
-	// dataPointButtonTopOffset = dataPointButtonTopOffset-addDataPointHeight-20;
-	// $(".tags-button-container").css("top",dataPointButtonTopOffset);
 });
