@@ -58,7 +58,7 @@ function plotOneGraph(inputJSON){
 		scaleLineWidth:3,
 		datasetStrokeWidth:5,
 		pointDotRadius:5,
-		xFreq:15,
+		xFreq:8,
 		pointDot: false
 	};
 	var myNewChart = new Chart(ctx).Line(data,options);
@@ -105,7 +105,7 @@ function plotMultipleGraph(datasets){
 		scaleLineWidth:3,
 		datasetStrokeWidth:5,
 		pointDotRadius:5,
-		xFreq:15,
+		xFreq:8,
 		pointDot: false
 	};
 	var myNewChart = new Chart(ctx).Line(graphData,options);
