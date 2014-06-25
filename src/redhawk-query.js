@@ -403,6 +403,15 @@ function generateTagFilterObjectFromOptionalSectionForGetSetsMethod(){
 
 $("#getRadio").click(function(){
 	$(".tags-button-container").hide();
+	graphContainerSumOfChildNode = document.getElementById("optionalSection").children.length;
+	for(var i=graphContainerSumOfChildNode;i>3;i--){
+		$("#optionalSection").children().last().remove();
+		// var addDataPointHeight = $("#dataPointTextBox").height();
+		// graphContainerSumOfChildNode = graphContainerSumOfChildNode-1;
+		// dataPointButtonTopOffset = dataPointButtonTopOffset-addDataPointHeight-20;
+		// $(".datapoints-button-container").css("top",dataPointButtonTopOffset);
+	}
+
 	$(".optional-tag-container").css("top","26px");
 	$("#dataSetTextBox").attr("disabled",true);
 	$(".dataset-text-box").attr("title","avaliable with getsets");
