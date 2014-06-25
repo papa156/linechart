@@ -1,5 +1,8 @@
 
 @media screen and (max-width: 1366px) and (max-height: 768px){
+	.mandatory-section{
+		height: 310px;
+	}
     .filter-tab{
 		height: 626px;
 		top: 40px;
@@ -20,7 +23,7 @@
 		top: 60px;
 	}
 	.optional-section{
-		height: 69px;
+		height: 146px;
 	}
 	.accordion-footer {	
 		top: 626px;
@@ -39,16 +42,16 @@
 		font-size: 16px;
 	}
 	.server-list-container {
-		top: 10px;
+		top: 3px;
 	}
 	.url-selection-container {
-		top: 62px;
+		top: 53px;
 	}
 	.metric-list-container {
-		top: 105px;
+		top: 83px;
 	}
 	.granularity-container {
-		top: 156px;
+		top: 165px;
 		width: 100px;
 		left :5px;
 	}
@@ -59,7 +62,7 @@
 		left: 89px;
 	}
 	.dataset-container {
-		top: 156px;
+		top: 165px;
 		left:  188px;
 		width:100px;
 	}
@@ -90,7 +93,7 @@
 		left: 149px;
 	}
 	.optional-line {
-		margin-top: 365px;
+		margin-top: 310px;
 	}
 	#queryAccordionInner {
 		height: 528px;
@@ -167,5 +170,8 @@
 		top: 240px;
 		height: 120px;
 		width: 150px;
+	}
+	li{
+		line-height: 23px;
 	}
 }
