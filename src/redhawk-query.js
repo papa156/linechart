@@ -556,3 +556,40 @@ $(".delete-tags-button-container").click(function(){
 	}
 	$("#optionalSection").children().last().remove();
 });
+
+$(".start-date-time-value").change(function(){
+	var startDate = $(".start-date-time-value").val();
+	if($(".end-date-time-value").val() === ""){
+		var firstColon = startDate.indexOf(":");
+		var minutes = parseInt(startDate.substring(firstColon+1,firstColon+3));
+		var hour = parseInt(startDate.substring(firstColon-2,firstColon));
+		var endMinutes = minutes +30;
+		var endDate;
+		if(endMinutes >= 60){
+			var endHour = hour+1;
+			var leftoverMinute = endMinutes-60;
+			var firstSection = startDate.substring(0,firstColon-2);
+			var lastSection = startDate.substring(firstColon+3,startDate.length);
+			var leftoverMinuteString = leftoverMinute.toString();
+			var endHourString = endHour.toString();
+			if(leftoverMinute<10){
+				leftoverMinuteString = "0"+leftoverMinuteString;
+			}
+			if(endHour<10){
+				endHourString = "0"+endHourString;
+			}
+			if(endHour>=24){
+				endHour = 0;
+				endHourString = "0"+endHour.toString();
+			}
+			var middleSection = endHourString + ":"+leftoverMinuteString;
+			endDate = firstSection + middleSection+lastSection;
+		}else{
+			var endMinutesString = endMinutes.toString();
+			var firstSection = startDate.substring(0,firstColon+1);
+			var lastSection = startDate.substring(firstColon+3,startDate.length);
+			endDate = firstSection + endMinutesString+lastSection;
+		}
+		$(".end-date-time-value").val(endDate);
+	}
+});
