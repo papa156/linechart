@@ -394,6 +394,7 @@ function generateTagFilterObjectFromOptionalSectionForGetMethod(){
 			}
 		}
 	}
+	return tagObj;
 };
 
 function generateTagFilterObjectFromOptionalSectionForGetSetsMethod(){
