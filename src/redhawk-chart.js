@@ -3,6 +3,17 @@ var ctx = document.getElementById("myChart").getContext("2d");
 
 resizingCanvas();
 
+function resizingCanvas(){
+	var canvas = document.getElementById("myChart");
+	if($(window).height() <= 768 && $(window).width()<=1366){
+		canvas.width = 750;
+		canvas.height = 480;
+	}else{
+		canvas.width = 1000;
+		canvas.height = 600;
+	}
+};
+
 function getValueFromTextArea(){
 	var textAreaVal = $(".json-text-area").val();
 	return JSON.parse(textAreaVal);  
