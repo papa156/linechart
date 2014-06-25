@@ -47,19 +47,106 @@
 								</form>
 					        </div>
 					     	<div class="metric-list-container">
-					     		<div class="metric-list-label">Metric : </div>
-					        	<select class = "metric-list selectpicker" id = "metricList" data-width="290px" data-live-search="true">
-						          <option value = "1">FE.PagePerformance.RedirectTime</option>
-						          <option value = "2">FE.PagePerformance.DnsTime</option>
-						          <option value = "3">FE.PagePerformance.ConnectTime</option>
-						          <option value = "4">FE.PagePerformance.RequestTime</option>
-						          <option value = "5">FE.PagePerformance.DomLoadTime</option>
-						          <option value = "6">FE.PagePerformance.ResponseTime</option>
-						          <option value = "7">FE.PagePerformance.DomReadyTime</option>
-						          <option value = "8">FE.PagePerformance.DomContentLoadedTime</option>
-						          <option value = "9">FE.PagePerformance.DomCompleteTime</option>
-						          <option value = "10">FE.PagePerformance.LoadEventTime</option>
-						          <option value = "11">FE-PAGELOADTIME</option>
+					     		<div class="metric-list-label" rel="tooltip" title="the metric is divide to three seperate portion by dot">Metric : </div>
+					        	<select class = "metric-list selectpicker" id = "metricList" data-width="100px" data-live-search="true" data-size="8">
+						          <option value = "1">3813</option>
+						          <option value = "2">3304</option>
+						          <option value = "3">223</option>
+						          <option value = "4">3400</option>
+						          <option value = "5">3287</option>
+						          <option value = "6">2889</option>
+						          <option value = "7">219</option>
+						          <option value = "8">3290</option>
+						          <option value = "9">2888</option>
+						          <option value = "10">214</option>
+						          <option value = "11">3050</option>
+						          <option value = "12">3698</option>
+						          <option value = "13">218</option>
+						          <option value = "14">googlehpaservice</option>
+						          <option value = "15">FE-PAGELOADTIME</option>
+						          <option value = "16">LegacyTS_pageload</option>
+						          <option value = "17">xcc</option>
+						          <option value = "18">LegacyTS_setEnablePromocode</option>
+						          <option value = "19">testredhawklive</option>
+						          <option value = "20">SERVICE-CHECK</option>
+						          <option value = "21">FE</option>
+						          <option value = "22">dfsc</option>
+						          <option value = "23">rhtest</option>
+						        </select>
+						        <select class = "metric-list2 selectpicker" id = "metricList2" data-width="120px" data-live-search="true" data-size="8">
+						          <option value = "1">none</option>
+						          <option value = "2">RoundRobinStats</option>
+						          <option value = "3">cassandra</option>
+						          <option value = "4">dmc</option>
+						          <option value = "5">db</option>
+						          <option value = "6">citysearch</option>
+						          <option value = "7">Performance</option>
+						          <option value = "8">PagePerformance</option>
+						          <option value = "9">steakhouse</option>
+						          <option value = "10">testData</option>
+						          <option value = "11">landmarksearch</option>
+						          <option value = "12">manualcalculation</option>
+						          <option value = "13">hotellist</option>
+						          <option value = "14">converthotelandsteakhouse</option>
+						          <option value = "15">radiussearch</option>
+						          <option value = "16">LegacyTS_pageload</option>
+						          <option value = "17">requests</option>
+						          <option value = "18">getsmallhotels</option>
+						          <option value = "19">getmissingcitydmchotels</option>
+						          <option value = "20">areasearch</option>
+						          <option value = "21">DragonFruitAPI</option>
+						        </select>
+						        <select class = "metric-list3 selectpicker" id = "metricList3" data-width="120px" data-live-search="true" data-size="8">
+						          <option value = "1">none</option>
+						          <option value = "2">CDBs</option>
+						          <option value = "3">ratesilo</option>
+						          <option value = "4">FetchDmcHotels</option>
+						          <option value = "5">partnerfilter</option>
+						          <option value = "6">sorting</option>
+						          <option value = "7">Breakdown</option>
+						          <option value = "8">fetchPrepared</option>
+						          <option value = "9">ConnectTime</option>
+						          <option value = "10">DomCompleteTime</option>
+						          <option value = "11">hoteltranslatedname</option>
+						          <option value = "12">execute</option>
+						          <option value = "13">manualdownlift</option>
+						          <option value = "14">preloadcache</option>
+						          <option value = "15">ResponseTime</option>
+						          <option value = "16">23</option>
+						          <option value = "17">radiusdata</option>
+						          <option value = "18">request.getresults</option>
+						          <option value = "19">review_score</option>
+						          <option value = "20">timeout</option>
+						          <option value = "21">citymetadata</option>
+						          <option value = "22">22</option>
+						          <option value = "23">15</option>
+						          <option value = "24">4</option>
+						          <option value = "25">cityavailablility</option>
+						          <option value = "26">put</option>
+						          <option value = "27">RedirectTime</option>
+						          <option value = "28">DomContentLoadedTime</option>
+						          <option value = "29">exchangerate</option>
+						          <option value = "30">decompress</option>
+						          <option value = "31">LoadEventTime</option>
+						          <option value = "32">convert</option>
+						          <option value = "33">fetch</option>
+						          <option value = "34">14</option>
+						          <option value = "35">hotelsbycity</option>
+						          <option value = "36">gethoteldata</option>
+						          <option value = "37">21</option>
+						          <option value = "38">filtering</option>
+						          <option value = "39">RequestTime</option>
+						          <option value = "40">DomReadyTime</option>
+						          <option value = "41">DnsTime</option>
+						          <option value = "42">19</option>
+						          <option value = "43">optoutslist</option>
+						          <option value = "44">hotelmetadata</option>
+						          <option value = "45">request.getcityavailability2</option>
+						          <option value = "45">DomLoadTime</option>
+						          <option value = "45">landmarkdata</option>
+						          <option value = "45">sortingfiltering</option>
+						          <option value = "45">XccFetchHotels</option>
+						          <option value = "46">hotel_facility</option>
 						        </select>
 					        </div>
 					        <div class="granularity-container">
@@ -92,22 +179,35 @@
 									 </div>
 								 </div>
 					        </div>
-					        <div class="cluster-contatiner">
+					      <!--   <div class="cluster-contatiner">
 				        		<div class="cluster-label" rel="tooltip" title="seperate cluster by comma, insert in order">Cluster : </div>
 				        		<input  type="text" class = "cluster-text-box form-control" rel="tooltip" title="seperate cluster by comma, insert in order">
-				        	</div>
+				        	</div> -->
 				        </div>
 				        <hr class = "optional-line" align="center" width="80%">
-				        <div class="optional-section">
-				        	<div class="optional-section-header">Optional Section</div>
-				        	<div class="page-container">
+				        <div class="optional-section" id = "optionalSection">
+				        	<div class="optional-section-header" id = "optionalSectionHeader">Optional Section</div>
+				        	<div class ="tags-button-container">
+						        <div class="add-tags-button-container" rel="tooltip" title="add tag filter group to match the same amount of datasets">
+						        	<i class="fa fa-plus plus-tags-icon"></i>
+						        	<div class="add-tags-text"> Tags Filter</div>
+						        </div>
+						        <div class="delete-tags-button-container" data-placement="left" rel="tooltip" title="delete tag filter group to match the same amount of datasets">
+						        	<i class="fa fa-minus delete-tags-icon"></i>
+						        	<div class="delete-tags-text"> Tags Filter</div>
+						        </div>
+					        </div>
+				        	<ul class = "optional-tag-container" id = "optionalTagContainer">
+				        	</ul>
+				        	
+				        	<!-- <div class="page-container">
 				        		<div class="page-label" rel="tooltip" title="seperate page by comma, insert in order">Page : </div>
 				        		<input  type="text" class = "page-text-box form-control" rel="tooltip" title="seperate page by comma, insert in order">
 				        	</div>
 				        	<div class="platform-container">
 				        		<div class="platform-label" rel="tooltip" title="seperate platform by comma, insert in order">Platform : </div>
 				        		<input  type="text" class = "platform-text-box form-control" rel="tooltip" title="seperate platform by comma, insert in order">
-				        	</div>
+				        	</div> -->
 				        </div>
 				        <div class = "submit-button" data-toggle="modal" data-target="#myModal">Submit</div>
 				        <!-- <div class = "query-mode-container">
@@ -164,11 +264,11 @@
 					     		<textarea  type="text" class = "dataPoint-text-graph-box form-control" id = "dataPointTextBox" rel="tooltip" title="insert JSON object seperate by comma"></textarea>
 					        </div>
 					        <div class ="datapoints-button-container">
-						        <div class="add-datapoints-button-container">
+						        <div class="add-datapoints-button-container"  rel="tooltip" title="add datapoint text box to match the same amount of datasets">
 						        	<i class="fa fa-plus plus-icon"></i>
 						        	<div class="add-datapoints-text"> Data Points</div>
 						        </div>
-						        <div class="delete-datapoints-button-container">
+						        <div class="delete-datapoints-button-container" rel="tooltip"  title="delete datapoint text box to match the same amount of datasets">
 						        	<i class="fa fa-minus delete-icon"></i>
 						        	<div class="delete-datapoints-text"> Data Points</div>
 						        </div>
