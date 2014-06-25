@@ -129,7 +129,7 @@ function createOptionalDropDownListOption(tagname,liTagClass,tagValues){
 		tagnameElement.innerHTML =tagValuesList[i];
 		$(tagnameElement).appendTo("."+liTagClass);
 	}
-	$('.selectpicker').selectpicker();
+	$('.selectpicker').selectpicker({dropupAuto:false});
 	$('.selectpicker').selectpicker('refresh');
 }	
 
@@ -546,7 +546,7 @@ $(".add-tags-button-container").click(function(){
 	cloneTagFilterGroup.appendTo(".optional-section");
 	cloneTagFilterGroup.css("top",originalTagFilterHeight+50).css("position","relative");
 	cloneTagFilterGroup.find('.bootstrap-select').remove();
-	cloneTagFilterGroup.find('select').selectpicker();
+	cloneTagFilterGroup.find('select').selectpicker({dropupAuto:false});
 });
 
 $(".delete-tags-button-container").click(function(){
