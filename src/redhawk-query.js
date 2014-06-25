@@ -398,7 +398,35 @@ function generateTagFilterObjectFromOptionalSectionForGetMethod(){
 };
 
 function generateTagFilterObjectFromOptionalSectionForGetSetsMethod(){
-
+	var tagObjList = [];
+	var optionalTagContainerChildren = document.getElementById('optionalSection').children;
+	for(var i=0;i<optionalTagContainerChildren.length;i++){
+		if(optionalTagContainerChildren[i].tagName.toLowerCase() === "ul"){
+			var tagObj = {
+				tags : {}
+			};
+			var tags = tagObj.tags;
+			var optionalFilterUL = optionalTagContainerChildren[i];
+			for(var j=0;j<optionalFilterUL.children.length;j++){
+				if(optionalFilterUL.children[j].tagName.toLowerCase() === "li"){
+					var optionalTagFilter = optionalFilterUL.children[j].children[1];
+					var optionalTagLabel = optionalFilterUL.children[j].children[0];
+					if(optionalTagFilter.selectedIndex === -1){
+						continue;
+					}
+					var optionalTagLabelKey = optionalTagLabel.innerHTML.substring(0,optionalTagLabel.innerHTML.indexOf(" "));
+					tags[optionalTagLabelKey] = []; //the drop down have been selected
+					for(var k=0;k<optionalTagFilter.length;k++){
+					 	if(optionalTagFilter[k].selected === true){
+							tags[optionalTagLabelKey].push(optionalTagFilter[k].text);
+					  	}
+					}
+				}
+			}
+			tagObjList.push(tagObj);
+		}
+	}
+	return tagObjList;
 };
 
 $("#getRadio").click(function(){
@@ -455,9 +483,8 @@ $(".submit-button").click(function(e){
 
 	// var page=getPageFromPageTextBox();
 	// var platform=getPlatformFromPlatformTextBox();
-	var tags = generateTagFilterObjectFromOptionalSectionForGetMethod();
-	console.log(tags);
 	if(getRadioState === true){
+		var tags = generateTagFilterObjectFromOptionalSectionForGetMethod();
 		$("#dataSetTextBox").attr("disabled",true);
 		showLoadingModal();
 		setGetRequestObject(metricSelectedOption,granularity,startDate,endDate,serverUrl,tags);
