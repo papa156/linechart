@@ -372,7 +372,7 @@ function getValueFromQueryResultTextArea(){
 	return JSON.parse(textAreaVal);  
 };
 
-function generateTagFilterObjectFromOptionalSection(){
+function generateTagFilterObjectFromOptionalSectionForGetMethod(){
 	var tagObj = {
 		tags : {}
 	};
@@ -394,6 +394,10 @@ function generateTagFilterObjectFromOptionalSection(){
 			}
 		}
 	}
+};
+
+function generateTagFilterObjectFromOptionalSectionForGetSetsMethod(){
+
 };
 
 $("#getRadio").click(function(){
@@ -450,9 +454,8 @@ $(".submit-button").click(function(e){
 
 	// var page=getPageFromPageTextBox();
 	// var platform=getPlatformFromPlatformTextBox();
-	var tags = generateTagFilterObjectFromOptionalSection();
-
-
+	var tags = generateTagFilterObjectFromOptionalSectionForGetMethod();
+	console.log(tags);
 	if(getRadioState === true){
 		$("#dataSetTextBox").attr("disabled",true);
 		showLoadingModal();
@@ -460,6 +463,7 @@ $(".submit-button").click(function(e){
 	}else if(getSetsRadioState === true){
 		$("#dataSetTextBox").removeAttr("disabled");
 		var datasetList=getDatasetsForGetSets();
+		var tags = generateTagFilterObjectFromOptionalSectionForGetSetsMethod();
 		if(typeof datasetList === "undefined"){
 			return;
 		}
@@ -537,8 +541,13 @@ $( "#serverList" ).change(function() {
 });
 
 $(".add-tags-button-container").click(function(){
-	var initialULHeight = $("#optionalTagContainer").height();
-	$("#optionalTagContainer").clone().appendTo(".optional-section").css("top",initialULHeight+50).css("position","relative");
+	var originalTagFilterHeight = $("#optionalTagContainer").height();
+	var originalTagFilterGroup = $("#optionalTagContainer");
+	var cloneTagFilterGroup = originalTagFilterGroup.clone();
+	cloneTagFilterGroup.appendTo(".optional-section");
+	cloneTagFilterGroup.css("top",originalTagFilterHeight+50).css("position","relative");
+	cloneTagFilterGroup.find('.bootstrap-select').remove();
+	cloneTagFilterGroup.find('select').selectpicker();
 });
 
 $(".delete-tags-button-container").click(function(){
@@ -546,6 +555,5 @@ $(".delete-tags-button-container").click(function(){
 	if(graphContainerSumOfChildNodeLocal<=3){
 		return;
 	}
-	var initialULHeight = $("#optionalTagContainer").height();
 	$("#optionalSection").children().last().remove();
 });
