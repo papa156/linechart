@@ -317,25 +317,13 @@ function setGetRequestObject(metricSelectedOption,granularity,startDate,endDate,
 	requestObject.start = startDate;
 	requestObject.end = endDate;
 	requestObject.tags = tags;
-	// if(typeof page !== "undefined"){
-	// 	requestObject.tags.page = [];
-	// 	for(var i=0;i<page.length;i++){
-	// 		requestObject.tags.page.push(page[i]);
-	// 	}
-	// }
-	// if(typeof platform !== "undefined"){
-	// 	requestObject.tags.platform = [];
-	// 	for(var i=0;i<platform.length;i++){
-	// 		requestObject.tags.platform.push(platform[i]);
-	// 	}
-	// }
 	var requestObjectString = JSON.stringify(requestObject);
 	requestQueryResult(serverUrl,requestObjectString,function(result){
 		updateResult(result);
 	});
 };
 
-function setGetSetsRequestObject(metricSelectedOption,granularity,startDate,endDate,serverUrl,cluster,datasetList,page,platform){
+function setGetSetsRequestObject(metricSelectedOption,granularity,startDate,endDate,serverUrl,tagsList,datasetList){
 	requestObject.requests={};
 	for(var i=0;i<datasetList.length;i++){
 		requestObject.requests[datasetList[i]] = {};
@@ -343,23 +331,7 @@ function setGetSetsRequestObject(metricSelectedOption,granularity,startDate,endD
 		requestObject.requests[datasetList[i]].granularity = granularity;
 		requestObject.requests[datasetList[i]].start = startDate;
 		requestObject.requests[datasetList[i]].end = endDate;
-		requestObject.requests[datasetList[i]].tags = {
-			cluster:[
-				cluster[i]
-			]
-		};
-		if(typeof page !== "undefined"){
-			requestObject.requests[datasetList[i]].tags.page = [];
-			for(var j=0;j<page.length;j++){
-				requestObject.requests[datasetList[i]].tags.page.push(page[j]);
-			}
-		}
-		if(typeof platform !== "undefined"){
-			requestObject.requests[datasetList[i]].tags.platform = [];
-			for(var j=0;j<platform.length;j++){
-				requestObject.requests[datasetList[i]].tags.platform.push(platform[j]);
-			}
-		}
+		requestObject.requests[datasetList[i]].tags = tagsList[i];
 	}
 	var requestObjectString = JSON.stringify(requestObject);
 	requestQueryResult(serverUrl,requestObjectString,function(result){
@@ -456,8 +428,6 @@ $(".submit-button").click(function(e){
 	$(".graph-result").hide();
 
 	requestObject={};
-	// serverSelectedOption = getSelectedItemFromServerDropDownList();
-	// metricSelectedOption = getSelectedItemFromMetricDropDownList();
 	var granularity = getValueFromGranularityTextBox();
 	if(typeof granularity === "undefined"){
 		return;
@@ -475,14 +445,6 @@ $(".submit-button").click(function(e){
 	if(typeof endDate === "undefined"){
 		return;
 	}
-
-	// var cluster=getValueClusterTextBox();
-	// if(typeof cluster === "undefined"){
-	// 	return;
-	// }
-
-	// var page=getPageFromPageTextBox();
-	// var platform=getPlatformFromPlatformTextBox();
 	if(getRadioState === true){
 		var tags = generateTagFilterObjectFromOptionalSectionForGetMethod();
 		$("#dataSetTextBox").attr("disabled",true);
@@ -491,12 +453,12 @@ $(".submit-button").click(function(e){
 	}else if(getSetsRadioState === true){
 		$("#dataSetTextBox").removeAttr("disabled");
 		var datasetList=getDatasetsForGetSets();
-		var tags = generateTagFilterObjectFromOptionalSectionForGetSetsMethod();
+		var tagsList = generateTagFilterObjectFromOptionalSectionForGetSetsMethod();
 		if(typeof datasetList === "undefined"){
 			return;
 		}
 		showLoadingModal();
-		setGetSetsRequestObject(metricSelectedOption,granularity,startDate,endDate,serverUrl,cluster,datasetList,page,platform);
+		setGetSetsRequestObject(metricSelectedOption,granularity,startDate,endDate,serverUrl,tagsList,datasetList);
 	}
 	
 	
