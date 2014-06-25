@@ -65,7 +65,7 @@
 }
 .graph-input-container{
 	position: absolute;
-	width: 435px;
+	width: 465px;
 	height: 750px;
 	top: 0;
 	overflow-y: visible;
@@ -93,7 +93,7 @@
 	position: relative;
 	width: 400px;
 	height: 40px;
-	top: 30px;
+	top: 25px;
 }
 .metric-list-graph-label{
 	position: absolute;
@@ -111,7 +111,7 @@
 	position: relative;
 	width: 400px;
 	height: 40px;
-	top: 50px;
+	top: 67px;
 }
 .granularity-graph-label{
 	position: absolute;
@@ -129,7 +129,7 @@
 	position: relative;
 	width: 400px;
 	height: 40px;
-	top: 66px;
+	top: 80px;
 }
 .dataset-graph-label{
 	position: absolute;
@@ -150,7 +150,7 @@
 	position: relative;
 	width: 400px;
 	height: 40px;
-	top: 76px;
+	top: 80px;
 }
 .dataPoint-graph-label{
 	position: relative;
@@ -167,4 +167,22 @@
 	top: 10px;
 	outline: none;
 	resize:none;
+}
+.metric-graph-list{
+	left: 0;
+	position: absolute;
+	width: 300px;
+	top: 30px;
+}
+.metric-graph-list2{
+	left: 115px;
+	position: absolute;
+	width: 300px;
+	top: 30px;
+}
+.metric-graph-list3{
+	left: 250px;
+	position: absolute;
+	width: 300px;
+	top: 30px;
 }
