@@ -12,7 +12,7 @@ function createLILabelInnerHtml(tagname,liTagClass){
 	var tagnameElement = document.createElement('div');
 	tagnameElement.setAttribute('class', 'optional-'+tagname+"-container");
 	tagnameElement.innerHTML =tagname + " : ";
-	tagnameElement.style.width = "100px";
+	tagnameElement.style.width = "110px";
 	tagnameElement.style.height = "35px";
 	tagnameElement.style.top = "-5px";
 	tagnameElement.style.left = "7px";
@@ -30,6 +30,7 @@ function createOptionalLILabelFromTagnames(tagname,metric,serverUrl){
 	tagnameElement.style.position = "relative";
 	tagnameElement.style.left = "0";
 	$(tagnameElement).appendTo(".optional-tag-container");
+	$('.optional-li-'+tagname+"-container").addClass("optional-tag");
 	createLILabelInnerHtml(tagname,'optional-li-'+tagname+"-container");
 	createOptionalDropDownListFromTagname(tagname,'optional-li-'+tagname+"-container",metric,serverUrl);
 
@@ -50,7 +51,7 @@ function createOptionalDropDownListOption(tagname,liTagClass,tagValues){
 function createOptionalDropDownListFromTagname(tagname,liTagClass,metric,serverUrl){
 	var tagnameElement = document.createElement('select');
 	tagnameElement.setAttribute('class', 'optional-select-'+tagname+'-list');
-	tagnameElement.setAttribute('data-width', '240px');
+	tagnameElement.setAttribute('data-width', '210px');
 	tagnameElement.setAttribute('data-live-search', true);
 	tagnameElement.setAttribute('data-size', 8); 
 	tagnameElement.setAttribute('multiple', true);
@@ -59,7 +60,7 @@ function createOptionalDropDownListFromTagname(tagname,liTagClass,metric,serverU
 	tagnameElement.style.height = "30px";
 	tagnameElement.style.position = "absolute";
 	tagnameElement.style.top = "2px";
-	tagnameElement.style.left = "101px";
+	tagnameElement.style.left = "130px";
 	$(tagnameElement).appendTo("."+liTagClass);
 	$("."+'optional-select-'+tagname+'-list').addClass('selectpicker');
 	var requestServerURL = serverUrl + "/tagvalues";
