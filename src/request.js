@@ -67,10 +67,7 @@ function getValueFromQueryResultTextArea(){
 };
 
 function generateTagFilterObjectFromOptionalSectionForGetMethod(){
-	var tagObj = {
-		tags : {}
-	};
-	var tags = tagObj.tags;
+	var tags = {};
 	var optionalTagContainer = document.getElementById('optionalTagContainer');
 	for(var i=0;i<optionalTagContainer.children.length;i++){
 		if(optionalTagContainer.children[i].tagName.toLowerCase() === "li"){
@@ -88,7 +85,7 @@ function generateTagFilterObjectFromOptionalSectionForGetMethod(){
 			}
 		}
 	}
-	return tagObj;
+	return tags;
 };
 
 function generateTagFilterObjectFromOptionalSectionForGetSetsMethod(){
@@ -96,10 +93,7 @@ function generateTagFilterObjectFromOptionalSectionForGetSetsMethod(){
 	var optionalTagContainerChildren = document.getElementById('optionalSection').children;
 	for(var i=0;i<optionalTagContainerChildren.length;i++){
 		if(optionalTagContainerChildren[i].tagName.toLowerCase() === "ul"){
-			var tagObj = {
-				tags : {}
-			};
-			var tags = tagObj.tags;
+			var tags = {};
 			var optionalFilterUL = optionalTagContainerChildren[i];
 			for(var j=0;j<optionalFilterUL.children.length;j++){
 				if(optionalFilterUL.children[j].tagName.toLowerCase() === "li"){
@@ -117,7 +111,7 @@ function generateTagFilterObjectFromOptionalSectionForGetSetsMethod(){
 					}
 				}
 			}
-			tagObjList.push(tagObj);
+			tagObjList.push(tags);
 		}
 	}
 	return tagObjList;
