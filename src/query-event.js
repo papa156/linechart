@@ -115,12 +115,14 @@ $("#redhawkQueryHader").click(function(){
 
 
 $( "#metricList" ).change(function() {
+	autoGenerateSecondDigitMetricFromFirstDigit();
 	metricSelectedOption = getSelectedItemFromMetricDropDownList();
 	var serverUrl = serverUrlList[serverSelectedOption];
 	generateOptionalSectionFromSelectedMetric(metricSelectedOption,serverUrl);
 });
 
 $( "#metricList2" ).change(function() {
+	autoGenerateThirdDigitMetricFromSecondDigit();
 	metricSelectedOption = getSelectedItemFromMetricDropDownList();
 	var serverUrl = serverUrlList[serverSelectedOption];
 	generateOptionalSectionFromSelectedMetric(metricSelectedOption,serverUrl);
@@ -131,6 +133,15 @@ $( "#metricList3" ).change(function() {
 	var serverUrl = serverUrlList[serverSelectedOption];
 	generateOptionalSectionFromSelectedMetric(metricSelectedOption,serverUrl);
 });
+
+$( "#metricGraphList" ).change(function() {
+	autoGenerateSecondDigitMetricFromFirstDigitForGraph();
+});
+
+$( "#metricGraphList2" ).change(function() {
+	autoGenerateThirdDigitMetricFromSecondDigitForGraph();
+});
+
 
 $( "#serverList" ).change(function() {
 	serverSelectedOption = getSelectedItemFromServerDropDownList();
