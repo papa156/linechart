@@ -136,3 +136,6 @@ li{
 	font-size: 1em;	
 	display: inline-block;
 }
+.optional-tag .bootstrap-select{
+	left: 20px;
+}
