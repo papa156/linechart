@@ -86,15 +86,17 @@ var metricWithTwoOrThreeDigit= {
 			'4' : 4
 		}
 	}
-}
+};
+
+var metricValue1,metricValue2,metricValue3;
 
 function getSelectedItemFromMetricDropDownList(){
 	var metricDropdownList = document.getElementById("metricList");
 	var metricDropdownList2 = document.getElementById("metricList2");
 	var metricDropdownList3 = document.getElementById("metricList3");
-	var metricValue1 = metricDropdownList.options[metricDropdownList.selectedIndex].text;
-	var metricValue2 = metricDropdownList2.options[metricDropdownList2.selectedIndex].text;
-	var metricValue3 = metricDropdownList3.options[metricDropdownList3.selectedIndex].text;
+	metricValue1 = metricDropdownList.options[metricDropdownList.selectedIndex].text;
+	metricValue2 = metricDropdownList2.options[metricDropdownList2.selectedIndex].text;
+	metricValue3 = metricDropdownList3.options[metricDropdownList3.selectedIndex].text;
 	if(metricValue2 === "none"){
 		return metricValue1;
 	}else if(metricValue2 !== "none" && metricValue3 === "none"){
@@ -108,9 +110,9 @@ function getSelectedItemFromGraphMetricDropDownList(){
 	var metricDropdownList = document.getElementById("metricGraphList");
 	var metricDropdownList2 = document.getElementById("metricGraphList2");
 	var metricDropdownList3 = document.getElementById("metricGraphList3");
-	var metricValue1 = metricDropdownList.options[metricDropdownList.selectedIndex].text;
-	var metricValue2 = metricDropdownList2.options[metricDropdownList2.selectedIndex].text;
-	var metricValue3 = metricDropdownList3.options[metricDropdownList3.selectedIndex].text;
+	metricValue1 = metricDropdownList.options[metricDropdownList.selectedIndex].text;
+	metricValue2 = metricDropdownList2.options[metricDropdownList2.selectedIndex].text;
+	metricValue3 = metricDropdownList3.options[metricDropdownList3.selectedIndex].text;
 	if(metricValue2 === "none"){
 		return metricValue1;
 	}else if(metricValue2 !== "none" && metricValue3 === "none"){
@@ -118,4 +120,132 @@ function getSelectedItemFromGraphMetricDropDownList(){
 	}else{
 		return metricValue1+"."+metricValue2+"."+metricValue3;
 	}
+};
+
+function autoGenerateSecondDigitMetricFromFirstDigit(){
+	var metricDropdownList = document.getElementById("metricList");
+	metricValue1 = metricDropdownList.options[metricDropdownList.selectedIndex].text;
+	var secondLevelObj = metricWithTwoOrThreeDigit[metricValue1];
+	var metricDropdownList2 = document.getElementById("metricList2");
+	metricDropdownList2.innerHTML = ""; 
+	if(typeof secondLevelObj !== 'undefined'){
+		var optionVal = 2;
+		for(var key in secondLevelObj){
+			var option = document.createElement('option');
+			option.setAttribute('value', optionVal);
+			optionVal = optionVal+1;
+			option.innerHTML = key;
+			$(option).appendTo("#metricList2");
+		}
+	}else{
+		var option = document.createElement('option');
+		option.setAttribute('value', 1);
+		option.innerHTML = "none";
+		$(option).appendTo("#metricList2");
+	}
+	document.getElementById("metricList3").innerHTML = "";
+	var option2 = document.createElement('option');
+	option2.setAttribute('value', 1);
+	option2.innerHTML = "none";
+	$(option2).appendTo("#metricList3");
+	$('#metricList2').selectpicker('refresh');
+	$('#metricList3').selectpicker('refresh');
+};
+
+function autoGenerateThirdDigitMetricFromSecondDigit(){
+	var metricDropdownList = document.getElementById("metricList");
+	metricValue1 = metricDropdownList.options[metricDropdownList.selectedIndex].text;
+	var secondLevelObj = metricWithTwoOrThreeDigit[metricValue1];
+	var metricDropdownList2 = document.getElementById("metricList2");
+	metricValue2 = metricDropdownList2.options[metricDropdownList2.selectedIndex].text;
+	var thirdLevelObj = secondLevelObj[metricValue2];
+	var metricDropdownList3 = document.getElementById("metricList3");
+	metricDropdownList3.innerHTML = "";
+	if(typeof thirdLevelObj !== 'undefined'){
+		if(thirdLevelObj === ""){
+			var option = document.createElement('option');
+			option.setAttribute('value', 1);
+			option.innerHTML = "none";
+			$(option).appendTo("#metricList3");
+		}else{
+			var optionVal = 2;
+			for(var key in thirdLevelObj){
+				var option = document.createElement('option');
+				option.setAttribute('value', optionVal);
+				optionVal = optionVal+1;
+				option.innerHTML = key;
+				$(option).appendTo("#metricList3");
+			}
+		}
+	}else{
+		var option = document.createElement('option');
+		option.setAttribute('value', 1);
+		option.innerHTML = "none";
+		$(option).appendTo("#metricList3");
+	}
+	$('#metricList3').selectpicker('refresh')
+};
+
+function autoGenerateSecondDigitMetricFromFirstDigitForGraph(){
+	var metricDropdownList = document.getElementById("metricGraphList");
+	metricValue1 = metricDropdownList.options[metricDropdownList.selectedIndex].text;
+	var secondLevelObj = metricWithTwoOrThreeDigit[metricValue1];
+	var metricDropdownList2 = document.getElementById("metricGraphList2");
+	metricDropdownList2.innerHTML = ""; 
+	if(typeof secondLevelObj !== 'undefined'){
+		var optionVal = 2;
+		for(var key in secondLevelObj){
+			var option = document.createElement('option');
+			option.setAttribute('value', optionVal);
+			optionVal = optionVal+1;
+			option.innerHTML = key;
+			$(option).appendTo("#metricGraphList2");
+		}
+	}else{
+		var option = document.createElement('option');
+		option.setAttribute('value', 1);
+		option.innerHTML = "none";
+		$(option).appendTo("#metricGraphList2");
+	}
+	document.getElementById("metricGraphList3").innerHTML = "";
+	var option2 = document.createElement('option');
+	option2.setAttribute('value', 1);
+	option2.innerHTML = "none";
+	$(option2).appendTo("#metricGraphList3");
+	$('#metricGraphList2').selectpicker('refresh');
+	$('#metricGraphList3').selectpicker('refresh');
+};
+
+function autoGenerateThirdDigitMetricFromSecondDigitForGraph(){
+	var metricDropdownList = document.getElementById("metricGraphList");
+	metricValue1 = metricDropdownList.options[metricDropdownList.selectedIndex].text;
+	var secondLevelObj = metricWithTwoOrThreeDigit[metricValue1];
+	var metricDropdownList2 = document.getElementById("metricGraphList2");
+	metricValue2 = metricDropdownList2.options[metricDropdownList2.selectedIndex].text;
+	var thirdLevelObj = secondLevelObj[metricValue2];
+	var metricDropdownList3 = document.getElementById("metricGraphList3");
+	metricDropdownList3.innerHTML = "";
+	if(typeof thirdLevelObj !== 'undefined'){
+		if(thirdLevelObj === ""){
+			var option = document.createElement('option');
+			option.setAttribute('value', 1);
+			option.innerHTML = "none";
+			$(option).appendTo("#metricGraphList3");
+		}else{
+			var optionVal = 2;
+			for(var key in thirdLevelObj){
+				var option = document.createElement('option');
+				option.setAttribute('value', optionVal);
+				optionVal = optionVal+1;
+				option.innerHTML = key;
+				$(option).appendTo("#metricGraphList3");
+			}
+		}
+	}else{
+		var option = document.createElement('option');
+		option.setAttribute('value', 1);
+		option.innerHTML = "none";
+		$(option).appendTo("#metricGraphList3");
+	}
+	$('#metricGraphList3').selectpicker('refresh')
 };
