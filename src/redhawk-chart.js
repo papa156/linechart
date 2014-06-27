@@ -67,11 +67,14 @@ function plotOneGraph(inputJSON){
 	var options = {
 		scaleFontSize: 18,
 		scaleLineWidth:3,
-		datasetStrokeWidth:5,
-		pointDotRadius:5,
-		xFreq:8,
+		datasetStrokeWidth:3,
+		pointDotRadius:3,
+		xFreq:50,
 		pointDot: false
 	};
+	if(sumCountRatioList.length > 300){
+		options.animation = false;
+	}
 	var myNewChart = new Chart(ctx).Line(data,options);
 };
 
@@ -114,11 +117,14 @@ function plotMultipleGraph(datasets){
 	var options = {
 		scaleFontSize: 18,
 		scaleLineWidth:3,
-		datasetStrokeWidth:5,
-		pointDotRadius:5,
-		xFreq:8,
+		datasetStrokeWidth:3,
+		pointDotRadius:3,
+		xFreq:50,
 		pointDot: false
 	};
+	if(sumCountRatioListofList[0].length > 300){
+		options.animation = false;
+	}
 	var myNewChart = new Chart(ctx).Line(graphData,options);
 
 	return {datasetsList : datasetsList,colorList:colorList}
