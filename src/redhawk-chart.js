@@ -67,8 +67,8 @@ function plotOneGraph(inputJSON){
 	var options = {
 		scaleFontSize: 18,
 		scaleLineWidth:3,
-		datasetStrokeWidth:4,
-		pointDotRadius:4,
+		datasetStrokeWidth:3,
+		pointDotRadius:3,
 		xFreq:50,
 		pointDot: false
 	};
@@ -117,8 +117,8 @@ function plotMultipleGraph(datasets){
 	var options = {
 		scaleFontSize: 18,
 		scaleLineWidth:3,
-		datasetStrokeWidth:4,
-		pointDotRadius:4,
+		datasetStrokeWidth:3,
+		pointDotRadius:3,
 		xFreq:50,
 		pointDot: false
 	};
