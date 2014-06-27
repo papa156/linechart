@@ -951,7 +951,8 @@ window.Chart = function(context){
 				longestText +=10;
 			}
 			xAxisLength = width - longestText - widestXLabel;
-			valueHop = Math.floor(xAxisLength/(data.labels.length-1));	
+			//valueHop = Math.floor(xAxisLength/(data.labels.length-1));	
+			valueHop = xAxisLength/(data.labels.length-1);	
 				
 			yAxisPosX = width-widestXLabel/2-xAxisLength;
 			xAxisPosY = scaleHeight + config.scaleFontSize/2;				
