@@ -31,12 +31,14 @@
 		               <div class="mandatory-section">		
 							<div class="redhawk-filter-header"></div>
 							<div class = "server-list-container">
-								<div class="server-list-label">Redhawk in </div>
+								<div class="server-list-label" rel="tooltip" title="find more info in http://it-wiki.agoda.local/wiki/FrontEnd/RedHawk">Redhawk in </div>
 								<select class = "server-list selectpicker" id = "serverList" data-live-search="true">
-						          <option value = "1">HKG - Hong Kong</option>
-						          <option value = "2">ASH - Ashbourne</option>
-						          <option value = "3">AMS - Amsterdam</option>
-						          <option value = "4">DEV - Development</option>
+						          <option value = "1">HKG - APP</option>
+						          <option value = "2">HKG - DMZ</option>
+						          <option value = "3">HKG - DEV</option>
+						          <option value = "4">AMS - DMZ</option>
+						          <option value = "5">AMS - APP</option>
+						          <option value = "6">ASH - FE</option>
 						        </select>
 					        </div>
 					        <div class="url-selection-container">
@@ -66,13 +68,14 @@
 						          <option value = "15">FE</option>
 						          <option value = "16">FE-PAGELOADTIME</option>
 						          <option value = "17">FE-PAGEPROCESSREQUEST</option>
-						          <option value = "18">googlehpaservice</option>
-						          <option value = "19">LegacyTS_pageload</option>
-						          <option value = "20">LegacyTS_setEnablePromocode</option>
-						          <option value = "21">rhtest</option>
-						          <option value = "22">SERVICE-CHECK</option>
-						          <option value = "23">testredhawklive</option>
-						          <option value = "24">xcc</option>
+						          <option value = "18">FE-SESSIONCACHE-HEALTHCHECKER</option>
+						          <option value = "19">googlehpaservice</option>
+						          <option value = "20">LegacyTS_pageload</option>
+						          <option value = "21">LegacyTS_setEnablePromocode</option>
+						          <option value = "22">rhtest</option>
+						          <option value = "23">SERVICE-CHECK</option>
+						          <option value = "24">testredhawklive</option>
+						          <option value = "25">xcc</option>
 						        </select>
 						        <select class = "metric-list2 selectpicker" id = "metricList2" data-width="120px" data-live-search="true" data-size="8">
 						          <option value = "1">none</option>
@@ -181,6 +184,7 @@
 						          <option value = "22">SERVICE-CHECK</option>
 						          <option value = "23">testredhawklive</option>
 						          <option value = "24">xcc</option>
+								  <option value = "25">FE-SESSIONCACHE-HEALTHCHECKER</option>
 						        </select>
 						        <select class = "metric-graph-list2 selectpicker" id = "metricGraphList2" data-width="120px" data-live-search="true" data-size="8">
 						          <option value = "1">none</option> 
