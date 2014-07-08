@@ -69,7 +69,7 @@ function plotOneGraph(inputJSON){
 		scaleLineWidth:3,
 		datasetStrokeWidth:3,
 		pointDotRadius:3,
-		xFreq:50,
+		xFreq:7,
 		pointDot: false
 	};
 	if(sumCountRatioList.length > 300){
@@ -119,7 +119,7 @@ function plotMultipleGraph(datasets){
 		scaleLineWidth:3,
 		datasetStrokeWidth:3,
 		pointDotRadius:3,
-		xFreq:50,
+		xFreq:7,
 		pointDot: false
 	};
 	if(sumCountRatioListofList[0].length > 300){
