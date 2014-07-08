@@ -1,3 +1,21 @@
+// (function (d, w) {
+// 	$.ajax({
+// 		type: "POST",
+// 		url:"http://as-agdpapi-3001.agprod2.agoda.local:48090/rest/measurements/availabletags",
+// 		contentType: 'application/json; charset=utf-8',
+//         dataType: "json",
+//         cache: false,
+//         data :{},
+//         crossDomain : true
+//     }).fail(function(jqXHR, textStatus, errorThrown){
+// 		console.log(jqXHR, textStatus,errorThrown);
+// 	}).done(function(result,status){
+// 		console.log(result);
+// 	});
+// })(document, window);
+
+
+
 function requestAvaliableTagResult(serverUrl,inputQuery,callback){
 	$.ajax({
 		type: "POST",
