@@ -34,7 +34,9 @@ function setGetGraphRequestObject(metricSelectedOption,granularity,dataPointList
 	graphRequestObject.dataPoints = [];
 	graphRequestObject.measurementStat = {};
 	graphRequestObject.dataPoints = dataPointList;
-	plotOneGraph(graphRequestObject);
+	removeMinMaxAverageLabel();
+	var minMaxAverageValue = plotOneGraph(graphRequestObject);
+	renderMinMaxAverageLabel(minMaxAverageValue);
 };
 
 function setGetSetsGraphRequestObject(metricSelectedOption,granularity,dataPointList,datasetList){

@@ -98,7 +98,9 @@ $(".plot-graph-shortcut-button").click(function(e){
 			var labelList = plotMultipleGraph(queryResult.dataSets);
 			renderLabel(labelList);
 		}else{
-			plotOneGraph(queryResult);
+			removeMinMaxAverageLabel();
+			var minMaxAverageValue = plotOneGraph(queryResult);
+			renderMinMaxAverageLabel(minMaxAverageValue);
 		}
 
 	}
