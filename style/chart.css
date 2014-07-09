@@ -61,6 +61,19 @@
 	padding: 10px 10px 10px 10px;
 	display: none;
 }
+.min-max-average-label{
+	position: absolute;
+	background-color: #F7F7F7;
+	width: 365px;
+	height: 65px;
+	font-size: 14px;
+	line-height: 1;
+	text-align: center;
+	left: 328px;
+	top: 804px;
+	padding: 10px 10px 10px 10px;
+	display: none;
+}
 
 @media screen and (max-width: 1366px) and (max-height: 768px){
    .performance-label{
@@ -89,6 +102,18 @@
 	.submit-button{
 		top: 580px;
 		left: 1115px;
+	}
+	.min-max-average-label{
+		top: 300px;
+		width: 130px;
+		height: 147px;
+		left: 760px
+	}
+	.maxDOM-label{
+		margin: 61px 0px 0px 0px!important;
+	}
+	.averageDOM-label{
+		margin: 95px 0px 5px 0px!important;
 	}
 	canvas {
         /*width: 100% !important;*/
