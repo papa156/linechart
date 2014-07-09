@@ -42,14 +42,36 @@ function getTimeList(dataPoints){
 	return timeList;
 };
 
+function findAverageValueInArray(array){
+	var sum=0;
+	for(var i=0;i<array.length;i++){
+		sum = sum + array[i];
+	}
+	return sum/array.length;
+};
+
+function roundToTwo(num) {    
+    return +(Math.round(num + "e+2")  + "e-2");
+}
+
+
 function plotOneGraph(inputJSON){
 	$("#graphLabel").hide();
+	$("#minMaxAverageLabel").show();
 	var metric = inputJSON.metric
 	setHeaderLabel(metric);
 
 	var dataPoints = inputJSON.dataPoints;
 	var sumCountRatioList = getSumCountRatio(dataPoints);
 	var timeList = getTimeList(dataPoints);
+
+	var maxValue = _.max(sumCountRatioList);
+	var minValue = _.min(sumCountRatioList);
+	var averageValue = findAverageValueInArray(sumCountRatioList);
+
+	maxValue = roundToTwo(maxValue);
+	minValue = roundToTwo(minValue);
+	averageValue = roundToTwo(averageValue);
 
 	var data = {
 		labels : timeList,
@@ -69,18 +91,20 @@ function plotOneGraph(inputJSON){
 		scaleLineWidth:3,
 		datasetStrokeWidth:3,
 		pointDotRadius:3,
-		xFreq:7,
+		xFreq:50,
 		pointDot: false
 	};
 	if(sumCountRatioList.length > 300){
 		options.animation = false;
 	}
 	var myNewChart = new Chart(ctx).Line(data,options);
+	return {max : maxValue,min:minValue,average : averageValue};
 };
 
 function plotMultipleGraph(datasets){
 	//$(".performance-label").text("multiple datasets");
 	$("#graphLabel").show();
+	$("#minMaxAverageLabel").hide();
 	var datasetsList = [];
 	var colorList = [];
 	var sumCountRatioListofList = [];
@@ -119,7 +143,7 @@ function plotMultipleGraph(datasets){
 		scaleLineWidth:3,
 		datasetStrokeWidth:3,
 		pointDotRadius:3,
-		xFreq:7,
+		xFreq:50,
 		pointDot: false
 	};
 	if(sumCountRatioListofList[0].length > 300){
@@ -127,7 +151,7 @@ function plotMultipleGraph(datasets){
 	}
 	var myNewChart = new Chart(ctx).Line(graphData,options);
 
-	return {datasetsList : datasetsList,colorList:colorList}
+	return {datasetsList : datasetsList,colorList:colorList};
 };
 
 function randomColor(){
@@ -171,6 +195,44 @@ function removeLabel(){
 	myNode.innerHTML = '';
 };
 
+function removeMinMaxAverageLabel(){
+	var myNode = document.getElementById("minMaxAverageLabel");
+	myNode.innerHTML = '';
+};
+
+function renderMinMaxAverageLabel(minMaxAverageValue){
+	var minValue = minMaxAverageValue.min;
+	var maxValue = minMaxAverageValue.max;
+	var averageValue = minMaxAverageValue.average;
+	
+	var minDOM = document.createElement('div');
+	minDOM.setAttribute('class', 'minDOM-label');
+	minDOM.innerHTML ="min : " + minValue;
+	minDOM.style.width = "100px";
+	minDOM.style.height = "15px";
+	minDOM.style.margin = "25px 0px 5px 0px";
+	minDOM.style.position = "absolute";
+	$(minDOM).appendTo(".min-max-average-label");
+
+	var maxDOM = document.createElement('div');
+	maxDOM.setAttribute('class', 'maxDOM-label');
+	maxDOM.innerHTML ="max : " + maxValue;
+	maxDOM.style.width = "100px";
+	maxDOM.style.height = "15px";
+	maxDOM.style.margin = "25px 0px 5px 120px";
+	maxDOM.style.position = "absolute";
+	$(maxDOM).appendTo(".min-max-average-label");
+
+	var averageDOM = document.createElement('div');
+	averageDOM.setAttribute('class', 'averageDOM-label');
+	averageDOM.innerHTML ="average : " + averageValue;
+	averageDOM.style.width = "130px";
+	averageDOM.style.height = "15px";
+	averageDOM.style.margin = "25px 0px 5px 230px";
+	averageDOM.style.position = "absolute";
+	$(averageDOM).appendTo(".min-max-average-label");
+};
+
 $(".submit-graph-button").click(function(){
 	resizingCanvas();
 	if($.trim($(".json-text-area").val()) !== ""){
@@ -182,7 +244,8 @@ $(".submit-graph-button").click(function(){
 				var labelList = plotMultipleGraph(inputJSON.dataSets);
 				renderLabel(labelList);
 			}else{
-				plotOneGraph(inputJSON);
+				var minMaxAverageValue = plotOneGraph(inputJSON);
+				renderMinMaxAverageLabel(minMaxAverageValue);
 			}
 
 		}
