@@ -66,7 +66,13 @@ var metricWithTwoOrThreeDigit= {
 			LoadEventTime : 'LoadEventTime',
 			RedirectTime : 'RedirectTime',
 			RequestTime : 'RequestTime',
-			ResponseTime : 'ResponseTime'
+			ResponseTime : 'ResponseTime',
+			FetchStart_ConnectEnd : "FetchStart_ConnectEnd",
+			FetchStart_RequestEnd : "FetchStart_RequestEnd",
+			FetchStart_ResponseEnd : "FetchStart_ResponseEnd",
+			FetchStart_DomContentLoadEventStart : "FetchStart_DomContentLoadEventStart",
+			FetchStart_DomComplete : "FetchStart_DomComplete",
+			FetchStart_DomInteractive : "FetchStart_DomInteractive"
 		},
 		Performance : {
 			Breakdown : 'Breakdown'
