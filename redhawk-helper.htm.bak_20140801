@@ -68,15 +68,14 @@
 						          <option value = "15">FE</option>
 						          <option value = "16">FE-PAGELOADTIME</option>
 						          <option value = "17">FE-PAGEPROCESSREQUEST</option>
-								  <option value = "18">FE.Performance.Breakdown.MVC</option>								  
-						          <option value = "19">FE-SESSIONCACHE-HEALTHCHECKER</option>								  
-						          <option value = "20">googlehpaservice</option>
-						          <option value = "21">LegacyTS_pageload</option>
-						          <option value = "22">LegacyTS_setEnablePromocode</option>
-						          <option value = "23">rhtest</option>
-						          <option value = "24">SERVICE-CHECK</option>
-						          <option value = "25">testredhawklive</option>
-						          <option value = "26">xcc</option>
+						          <option value = "18">FE-SESSIONCACHE-HEALTHCHECKER</option>
+						          <option value = "19">googlehpaservice</option>
+						          <option value = "20">LegacyTS_pageload</option>
+						          <option value = "21">LegacyTS_setEnablePromocode</option>
+						          <option value = "22">rhtest</option>
+						          <option value = "23">SERVICE-CHECK</option>
+						          <option value = "24">testredhawklive</option>
+						          <option value = "25">xcc</option>
 						        </select>
 						        <select class = "metric-list2 selectpicker" id = "metricList2" data-width="120px" data-live-search="true" data-size="8">
 						          <option value = "1">none</option>

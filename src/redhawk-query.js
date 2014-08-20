@@ -2,9 +2,9 @@ var serverUrlList = {
 	"HKG - APP" : "http://hk-agdpapi-2001:38090/rest/measurements",
 	"HKG - DMZ" : "http://hk-agdpapi-2001:38090/rest/measurements",
 	"HKG - DEV" : "http://hk-agdpcc-2001:38090/rest/measurements",
-	"AMS - DMZ":"http://am-agdpapi-4001:38090/rest/measurements",
-	"AMS - APP":"http://am-agdpapi-4001:38090/rest/measurements",
-	"ASH - FE":"http://as-agdpapi-3001:38090/rest/measurements"
+	"AMS - DMZ":"http://am-agdpapi-4001:80/rest/measurements",
+	"AMS - APP":"http://am-agdpapi-4001:80/rest/measurements",
+	"ASH - FE":"http://as-agdpapi-3001:80/rest/measurements"
 };
 
 var requestObject = {};
