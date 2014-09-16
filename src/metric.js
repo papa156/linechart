@@ -91,6 +91,10 @@ var metricWithTwoOrThreeDigit= {
 			'23' : 23,
 			'4' : 4
 		}
+	},
+	MSE : {
+		SsrMvc : 'SsrMvc',
+		CitySearch : 'CitySearch'
 	}
 };
 
