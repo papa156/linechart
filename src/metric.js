@@ -72,7 +72,16 @@ var metricWithTwoOrThreeDigit= {
 			FetchStart_ResponseEnd : "FetchStart_ResponseEnd",
 			FetchStart_DomContentLoadEventStart : "FetchStart_DomContentLoadEventStart",
 			FetchStart_DomComplete : "FetchStart_DomComplete",
-			FetchStart_DomInteractive : "FetchStart_DomInteractive"
+			FetchStart_DomInteractive : "FetchStart_DomInteractive",
+			PreFetchLatency : "PreFetchLatency",
+			ConnectTime_V2 : "ConnectTime_V2",
+			SendRequestTime : "SendRequestTime",
+			SendResponseTime : "SendResponseTime",
+			ServerProcessingTime : "ServerProcessingTime",
+			DOMInteractive : "DOMInteractive",
+			PageUserReady : "PageUserReady",
+			DOMComplete : "DOMComplete",
+			PageLoadTime : "PageLoadTime"
 		},
 		Performance : {
 			Breakdown : 'Breakdown'
