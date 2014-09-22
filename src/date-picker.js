@@ -23,7 +23,3 @@ function getValueFromEndDateAndTimePicker(){
 	//var endDate = endDate.substring(endDate.indexOf(" ")+1,endDate.length);
 	return endDate;  
 };
-
-function getTemp(){
-	return "";  
-};
